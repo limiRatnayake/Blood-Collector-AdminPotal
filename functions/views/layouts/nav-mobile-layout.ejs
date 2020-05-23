@@ -1,0 +1,35 @@
+<div class="header-mobile__bar">
+    <div class="container-fluid">
+        <div class="header-mobile-inner">
+            <div class="logo">
+                <img src="../images/logo/logo_name.png" alt="logo">
+            </div>
+            <button class="hamburger hamburger--slider" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
+<nav class="navbar-mobile">
+    <div class="container-fluid">
+        <ul class="navbar-mobile__list list-unstyled">
+            <li class="has-sub">
+                <a class="js-arrow" href="#">
+                    <i class="fas fa-tachometer-alt"></i>Events Manager</a>
+                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                    <li <%- slug=="event" ? 'class="active"' : '' -%>>
+                        <a href="events">Event View</a>
+                        <!--events are taken from the root.js-->
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="users">
+                    <i class="fas fa-table"></i>User Management</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

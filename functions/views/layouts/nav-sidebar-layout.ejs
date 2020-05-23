@@ -1,0 +1,28 @@
+<div class="logo">
+    <img src="../images/logo/logo_name.png" alt="logo">
+</div>
+<div class="menu-sidebar__content js-scrollbar1">
+    <nav class="navbar-sidebar">
+        <ul class="list-unstyled navbar__list">
+            <li>
+                <a class="js-arrow" href="#">
+                    <i class="fas fa-tachometer-alt"></i>Events Manager</a>
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li <%- slug=="event" ? 'class="active"' : '' -%>>
+                        <a href="events">Event View</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a class="js-arrow" href="#">
+                    <i class="fas fa-tachometer-alt"></i>User Manager</a>
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li>
+                        <a href="users">User View</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
