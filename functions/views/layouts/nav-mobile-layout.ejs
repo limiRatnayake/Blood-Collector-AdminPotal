@@ -17,7 +17,7 @@
         <ul class="navbar-mobile__list list-unstyled">
             <li class="has-sub">
                 <a class="js-arrow" href="#">
-                    <i class="fas fa-tachometer-alt"></i>Events Manager</a>
+                   Events Manager</a>
                 <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                     <li <%- slug=="event" ? 'class="active"' : '' -%>>
                         <a href="events">Event View</a>
@@ -25,11 +25,18 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="users">
-                    <i class="fas fa-table"></i>User Management</a>
+            <li class="has-sub">
+                <a class="js-arrow" href="#">
+                    User Manager</a>
+                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                    <li <%- slug=="users-view" ? 'class="active"' : '' -%>>
+                        <a href="users-view">User View</a>
+                    </li>
+                    <li <%- slug=="add-user" ? 'class="active"' : '' -%>>
+                        <a href="add-users">Add admin user</a>
+                    </li>
+                </ul>
             </li>
-
         </ul>
     </div>
 </nav>

@@ -1,33 +1,41 @@
 $(function() {
     firebase.auth().onAuthStateChanged(function(user) {
+
         if (user) {
-            Cookies.set("__session", user._lat);
+            //user is sign-in
             window.location.href = window.location.origin + "/main/events";
         }
     });
 
+    // $.validator.addMethod('email',
+    //     function(value) {
+    //         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
+    //     }, 'Please enter a valif email'
+    // );
     $("#formSignIn").validate({
         rules: {
             txtEmail: {
                 required: true,
                 email: true
+
             },
             txtPassword: {
                 required: true,
                 minlength: 6,
             }
-        }
-    });
+        },
 
+    });
 
 
     $(document).on("click", "#btnLogin", () => {
         if ($("#formSignIn").valid()) {
             firebase.auth().signInWithEmailAndPassword($("#txtEmail").val(), $("#txtPassword").val())
                 .then(result => {
-                    // Cookies.set("session", result.user._lat);
+                    alert("You have successfully login!!")
                     window.location.href = window.location.origin + "/main/events";
-                }).catch(function(error) {
+                })
+                .catch(function(error) {
                     // Handle Errors here.
                     var errorCode = error.code;
                     var errorMessage = error.message;
@@ -39,5 +47,6 @@ $(function() {
 
         }
     });
+
 
 });

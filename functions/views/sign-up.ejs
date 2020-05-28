@@ -43,31 +43,33 @@
                         <div class="login-logo">
                             <img src="../images/logo/logo_name.png" alt="logo">
                         </div>
-                        <div class="login-form">
-                            <form action="" method="post">
+                        <div class="signup-form">
+                            <form id="formSignUp">
                                 <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <label for="txtFName">First Name</label>
+                                    <input class="au-input au-input--full" type="fName" name="fName" id="txtFName" placeholder="First Name">
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <label for="txtLName">Last Name</label>
+                                    <input class="au-input au-input--full" type="lName" name="lName" id="txtLName" placeholder="Last Name">
                                 </div>
-                                <div class="login-checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember">Remember Me
-                                    </label>
-                                    <label>
-                                        <a href="#">Forgotten Password?</a>
-                                    </label>
+                                <div class="form-group">
+                                    <label for="txtEmail">Email Address</label>
+                                    <input class="au-input au-input--full" type="email" name="email" id="txtEmail" placeholder="Email">
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                                <div class="form-group">
+                                    <label for="txtPassword">Password</label>
+                                    <input class="au-input au-input--full" type="password" id="txtPassword" name="password" placeholder="Password">
+                                </div>
+
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" id="btnSignUp" type="button">sign up</button>
+                                <!--stop the retrograding by changing the type submit to button-->
 
                             </form>
                             <div class="register-link">
                                 <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
+                                    Don you have account?
+                                    <a href="/" ">Sign In Here</a>
                                 </p>
                             </div>
                         </div>
@@ -79,29 +81,49 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="../vendor/jquery-3.2.1.min.js"></script>
+    <script src="../vendor/js/jquery-3.2.1.min.js "></script>
+    
+
     <!-- Bootstrap JS-->
-    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/popper.min.js "></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js "></script>
     <!-- Vendor JS       -->
-    <script src="../vendor/slick/slick.min.js">
+    <script src="../vendor/slick/slick.min.js "></script>
+    <script src="../vendor/wow/wow.min.js "></script>
+    <script src="../vendor/animsition/animsition.min.js "></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js ">
     </script>
-    <script src="../vendor/wow/wow.min.js"></script>
-    <script src="../vendor/animsition/animsition.min.js"></script>
-    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="../vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="../vendor/select2/select2.min.js">
+    <script src="../vendor/counter-up/jquery.waypoints.min.js "></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js ">
     </script>
 
+    <script src="../vendor/circle-progress/circle-progress.min.js "></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js "></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js "></script>
+    <script src="../vendor/select2/select2.min.js "></script>
+    <script src="../vendor/js/jquery.validate.min.js "></script>
+    <script src="../vendor/js/additional-methods.min.js "></script>
+    <!-- <script src="../libs/sweetalert2/sweetalert2.all.min.js "></script> -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="/__/firebase/7.14.5/firebase-app.js "></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="/__/firebase/7.14.5/firebase-analytics.js "></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="/__/firebase/7.14.5/firebase-auth.js "></script>
+    <script src="/__/firebase/7.14.5/firebase-firestore.js "></script>
+
+   
+
     <!-- Main JS-->
-    <script src="../js/main.js"></script>
-    <script src="../js/myJs.js"></script>
+    <script src="../js/main.js "></script>
+    
+    <!-- others plugins -->
+    <script src="../js/config.js "></script>
+    <script src="../js/sign-up.js "></script>
+
 
 </body>
 

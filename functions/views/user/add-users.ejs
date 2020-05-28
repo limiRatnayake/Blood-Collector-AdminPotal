@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../layouts/header-layout');%>
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <%- include('../layouts/nav-mobile-layout');%>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+
+            <%- include('../layouts/nav-sidebar-layout');%>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <%- include('../layouts/header-desktop-layout');%>
+                </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="container section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <!-- USER DATA-->
+                                <div class="user-data m-b-30">
+                                    <h3 class="title-3 m-b-30">
+                                        <i class="zmdi zmdi-account-calendar"></i>Add admin user</h3>
+                                    <div class="adduser-responsive m-b-30">
+                                        <form role="form" id="formAddUser">
+                                            <div class="form-group">
+                                                <label for="fName">First Name</label>
+                                                <input type="text" class="form-control" id="txtFName" name="txtFName" placeholder="First Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lName">Last Name</label>
+                                                <input type="text" class="form-control" id="txtLName" name="txtLName" placeholder="Last Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email"><span class="glyphicon glyphicon-user"></span> Email address</label>
+                                                <input type="text" class="form-control" id="txtEmail" name="txtEmail" placeholder="Enter email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="confirmPsw"><span class="glyphicon glyphicon-eye-open"></span> Confrim Password</label>
+                                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="re-enter password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="userRole"> Role</label>
+                                                <select class="form-control form-control-lg required " name="userRole" id="userRole" style="font-size: medium;">
+                                                    <option value="">None</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="User">User</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger btn-default " data-dismiss="modal" id="btnClear"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                                <button type="button" class="btn btn-success btn-default" id="btnRegister">Register</button>
+                                                <!--stop the retrograding by changing the type submit to button-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- END USER DATA-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <%-include('../layouts/footer-layout');-%>
+
+
+
+</body>
+
+</html>

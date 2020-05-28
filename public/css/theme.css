@@ -113,6 +113,10 @@ p {
     padding-right: 1px;
 }
 
+.adduser-responsive {
+    padding: 10px;
+}
+
 .card {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;

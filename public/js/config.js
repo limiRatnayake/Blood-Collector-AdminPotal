@@ -1,3 +1,7 @@
+const BASE_URL = window.location.origin;
+let currentUser = null;
+const COLLECTION_USERS = "users";
+
 var firebaseConfig = {
     apiKey: "AIzaSyDTvCus3v71DPEsKzQzVooJbV5e9L_mJqs",
     authDomain: "final-year-project-a89ff.firebaseapp.com",
@@ -9,3 +13,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+let db = firebase.firestore();
+let usersRef = db.collection(COLLECTION_USERS);

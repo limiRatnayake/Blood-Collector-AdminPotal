@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../layouts/header-layout');%>
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <%- include('../layouts/nav-mobile-layout');%>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+
+            <%- include('../layouts/nav-sidebar-layout');%>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <%- include('../layouts/header-desktop-layout');%>
+                </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="container section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <!-- USER DATA-->
+                                <div class="user-data m-b-30">
+                                    <h3 class="title-3 m-b-30">
+                                        <i class="zmdi zmdi-account-calendar"></i>user data</h3>
+                                    <div>
+                                        <div class=" float-right" style="margin-right: 25px;">
+                                            <button type="button" class="btn btn btn-success btn-sm" id="addUserBtn"><i class="zmdi zmdi-plus"></i>Add User</button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal " id="addUserModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <!-- Modal content-->
+                                                <div class="modal-content ">
+                                                    <div class="modal-header" style="padding:35px 50px;">
+                                                        <div>
+                                                            <h4>Add User</h4>
+                                                        </div>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                                    </div>
+                                                    <div class="modal-body" style="padding:25px 45px;">
+                                                        <form role="form">
+                                                            <div class="form-group">
+                                                                <label for="fName">First Name</label>
+                                                                <input type="text" class="form-control" id="name" placeholder="First Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="lName">Last Name</label>
+                                                                <input type="text" class="form-control" id="name" placeholder="Last Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Gender"> Is replacement available at hospital?</label>
+                                                                <div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Male">
+                                                                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Female">
+                                                                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="dob">Date Of Both</label>
+                                                                <input type="text" class="form-control" id="name" placeholder="DD/MMM/YY">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Blood Group"> Blood Group</label>
+                                                                <select class="form-control form-control-lg" id="bloodGroup" style="font-size: medium;">
+                                                                              <option>A+</option>
+                                                                              <option>O+</option>
+                                                                              <option>B+</option>
+                                                                              <option>AB+</option>
+                                                                              <option>A-</option>
+                                                                              <option>B-</option>
+                                                                              <option>O-</option>
+                                                                              <option>AB-</option>
+                                                                            </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="mobileNo">Mobile Number</label>
+                                                                <input type="text" class="form-control" id="mobileNo" placeholder="Mobile Number">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="city">City</label>
+                                                                <input type="text" class="form-control" id="city" placeholder="City">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="paddress">Postal Address</label>
+                                                                <input type="text" class="form-control" id="mobileNo" placeholder="Postal Address">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                                                                <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                                                                <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="role"> Role</label>
+                                                                <select class="form-control form-control-lg" id="role" style="font-size: medium;">
+                                                                  <option>Admin</option>
+                                                                  <option>User</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-danger btn-default " data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                                                <button type="submit" class="btn btn-success btn-default">Register</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive table-data">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>name</td>
+                                                    <td>role</td>
+                                                    <td>type</td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="#">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="role admin">admin</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rs-select2--trans rs-select2--sm">
+                                                            <select class="js-select2" name="property">
+                                                                <option selected="selected">Full Control</option>
+                                                                <option value="">Post</option>
+                                                                <option value="">Watch</option>
+                                                            </select>
+                                                            <div class="dropDownSelect2"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                            </button>
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                            <button class="item " data-toggle="tooltip" data-placement="top" title="More">
+                                                                <i class="zmdi zmdi-more"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox" checked="checked">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="#">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="role user">user</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rs-select2--trans rs-select2--sm">
+                                                            <select class="js-select2" name="property">
+                                                                <option value="">Full Control</option>
+                                                                <option value="" selected="selected">Post</option>
+                                                                <option value="">Watch</option>
+                                                            </select>
+                                                            <div class="dropDownSelect2"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                            </button>
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                            <button class="item " data-toggle="tooltip" data-placement="top" title="More">
+                                                                <i class="zmdi zmdi-more"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="#">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="role user">user</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rs-select2--trans rs-select2--sm">
+                                                            <select class="js-select2" name="property">
+                                                                <option value="">Full Control</option>
+                                                                <option value="" selected="selected">Post</option>
+                                                                <option value="">Watch</option>
+                                                            </select>
+                                                            <div class="dropDownSelect2"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                            </button>
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                            <button class="item " data-toggle="tooltip" data-placement="top" title="More">
+                                                                <i class="zmdi zmdi-more"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="#">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="role member">member</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rs-select2--trans rs-select2--sm">
+                                                            <select class="js-select2" name="property">
+                                                                <option selected="selected">Full Control</option>
+                                                                <option value="">Post</option>
+                                                                <option value="">Watch</option>
+                                                            </select>
+                                                            <div class="dropDownSelect2"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                            </button>
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                            <button class="item " data-toggle="tooltip" data-placement="top" title="More">
+                                                                <i class="zmdi zmdi-more"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="user-data__footer">
+                                        <button class="au-btn au-btn-load">load more</button>
+                                    </div>
+                                </div>
+                                <!-- END USER DATA-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--Model-->
+    <script>
+        $(document).ready(function() {
+            $("#addUserBtn").click(function() {
+                $("#addUserModal").modal({
+
+                });
+            });
+        });
+    </script>
+
+    <%-include('../layouts/footer-layout');-%>
+
+
+
+</body>
+
+</html>
