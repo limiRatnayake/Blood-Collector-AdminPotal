@@ -11,11 +11,11 @@ router.get("/events", (req, res) => {
     })
 });
 
-router.get("/users-view", (req, res) => {
-    res.render("user/users-view", {
-        slug: "users-view",
-        title: "User View",
-        subTitle: "User View",
+router.get("/admin-users-view", (req, res) => {
+    res.render("user/admin-users-view", {
+        slug: "admin-users-view",
+        title: "Admin User View",
+        subTitle: "Admin User View",
         hasTables: true,
         hasCharts: false
     })
@@ -31,5 +31,14 @@ router.get("/add-users", (req, res) => {
     })
 });
 
+router.get("/add-hospitals", (req, res) => {
+    res.render("hospital-list/add-hospitals", {
+        slug: "add-hospitals",
+        title: "Add Hospitals",
+        subTitle: "Add Hospitals",
+        hasTables: true,
+        hasCharts: false
+    })
+});
 
 module.exports = router;

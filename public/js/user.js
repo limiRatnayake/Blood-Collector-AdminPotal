@@ -1,7 +1,6 @@
 $(function() {
 
     let dataTable = $('#userViewTable').DataTable({
-
         destroy: true,
         scrollX: true,
         searching: false
@@ -35,6 +34,7 @@ $(function() {
             },
         }
     });
+
     $('#formAddUser').ready(function() {
         $(document).on("click", "#btnRegister", () => {
 
@@ -45,7 +45,7 @@ $(function() {
                         (user) => {
                             //check wether there is a user
                             if (user) {
-                                var uid = user.uid;
+
                                 var fName = $("#txtFName").val();
                                 var lName = $("#txtLName").val();
                                 var email = $("#txtEmail").val();
