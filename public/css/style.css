@@ -97,15 +97,6 @@ label {
 /* Model */
 
 .modal-dialog {
-    width: 60%;
+    width: 100%;
     padding-left: 45px;
-}
-
-.modal-header,
-h4,
-.close {
-    background-color: black;
-    color: white !important;
-    text-align: center;
-    font-size: 30px;
 }

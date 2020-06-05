@@ -37,141 +37,50 @@
                     <!--Add a post-->
                     <!-- Trigger the modal with a button -->
                     <div class=" row">
-                        <div class="col-12">
-                            <div class=" float-right ">
-                                <button type="button" class="btn  btn-success btn-sm" id="myBtn"><i class="zmdi zmdi-plus"></i>Add a blood request</button>
-                                <button type="button" class="btn  btn-success btn-sm" id="myBtn2"> <i class="zmdi zmdi-plus"></i>Add a campaign</button>
-                            </div>
-
+                        <div class="col-4">
                             <!-- Modal -->
-                            <div class="modal " id="myModal" role="dialog">
-                                <div class="modal-dialog modal-lg">
+                            <div class="modal " id="viewMoreDetails" role="dialog">
+                                <div class="modal-dialog modal-lg ">
                                     <!-- Modal content-->
                                     <div class="modal-content ">
                                         <div class="modal-header" style="padding:35px 50px;">
-                                            <div>
-                                                <h4>Add Blood Request</h4>
-                                            </div>
+
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                         </div>
                                         <div class="modal-body" style="padding:25px 45px;">
-                                            <form role="form">
-                                                <div class="form-group">
-                                                    <label for="Blood Group"> Blood Group</label>
-                                                    <select class="form-control form-control-lg" id="bloodGroup" style="font-size: medium;">
-                                                      <option>A+</option>
-                                                      <option>O+</option>
-                                                      <option>B+</option>
-                                                      <option>AB+</option>
-                                                      <option>A-</option>
-                                                      <option>B-</option>
-                                                      <option>O-</option>
-                                                      <option>AB-</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Gender"> Is replacement available at hospital?</label>
-                                                    <div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                            <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                            <label class="form-check-label" for="inlineRadio2">No</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="condition">Till us your condition?</label>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label" for="defaultCondition"><input class="form-check-input" type="checkbox" value="" id="condition">Is critical</label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="date">Till when you need blood?</label>
-                                                    <input type="text" class="form-control" id="date" placeholder="DD/MM/YY">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="closeDate">Your request will cloe on this date</label>
-                                                    <input type="text" class="form-control" id="closeDate" placeholder="Live Till">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="hospitalDetails">Hospital Name & Address wil help Blood Donors to nagigate easily</label>
-                                                    <input type="text" class="form-control" id="hospitalDetails" placeholder="Enter the hospital name">
-                                                </div>
-                                                <div class="dropdown-divider"></div>
-                                                <div class="form-group">
-                                                    <label for="name">Full Name</label>
-                                                    <input type="text" class="form-control" id="name" placeholder="Name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="mobileNo">Mobile Number</label>
-                                                    <input type="text" class="form-control" id="mobileNo" placeholder="Mobile Number">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-danger btn-default " data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                                    <button type="submit" class="btn btn-success btn-default">Upload</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            <div class="table-responsive table--no-card m-b-40">
+                                                <table class="table table-borderless table-striped table-earning " id="" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>No</td>
+                                                            <td>Name</td>
+                                                            <td>Email</td>
+                                                            <td>Role</td>
+                                                            <td>Type</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="myModal2" role="dialog">
-                            <div class="modal-dialog modal-lg">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header" style="padding:35px 50px;">
-                                        <div>
-                                            <h4>Add Blood campaign</h4>
-                                        </div>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                                    </div>
-                                    <div class="modal-body" style="padding:40px 50px;">
-                                        <div class="form-group">
-                                            <label for="campName">Campaign Name</label>
-                                            <input type="text" class="form-control" id="name" placeholder="eg: Blood Donation Campaign">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="orgName">Organized by</label>
-                                            <input type="text" class="form-control" id="name" placeholder="eg: Leo club-colombo">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="date">Date</label>
-                                            <input type="text" class="form-control" id="name" placeholder="eg: dd/mm/yyy">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="time">Time</label>
-                                            <input type="text" class="form-control" id="name" placeholder="eg: 11.00 a.m">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="venu">Venu</label>
-                                            <input type="text" class="form-control" id="name" placeholder="eg: Jayashinge Playground">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="venu">Description</label>
-                                            <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="venu">Select a file to upload</label>
-                                            <div>
-                                                <input type="file" name="fileupload" value="fileupload" id="fileupload">
+                                                </table>
                                             </div>
+
+
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-danger btn-default " data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                                            </div>
+
                                         </div>
 
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-danger btn-default " data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-success btn-default">Upload</button>
-                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
+
 
                     </div>
                 </div>
@@ -181,20 +90,75 @@
                         <div class="row ">
                             <div class="col-12 col-lg-12 ">
                                 <div class="table-responsive table--no-card m-b-40 ">
-                                    <table class="table table-borderless table-striped table-earning " id="myTable ">
+                                    <div class="table-responsive table--no-card m-b-40">
+                                        <table class="table table-borderless table-striped table-earning " id="userViewTable" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <td>No</td>
+                                                    <td>Name</td>
+                                                    <td>Email</td>
+                                                    <td>Role</td>
+                                                    <td>Type</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                            <!-- <tbody id=" userViewTableData ">
+                                                <tr>
+                                                    <td id="table_number ">
+                                                        <label>
+                                                            <span >1</span>
+                                                        </label>
+                                                    </td>
+                                                    <td id="table_username ">
+                                                        <div class="table-data__info ">
+                                                            <h6>lori lynch</h6>
+                                                            <span>
+                                                                <a href="# ">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td id="table_email ">
+                                                        <div class="table-data__info ">
+                                                            <span>
+                                                                <a href="# ">johndoe@gmail.com</a>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td id="table_role ">
+                                                        <span class="role admin ">admin</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data-feature ">
+                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="Edit ">
+                                                            <i class="zmdi zmdi-edit "></i>
+                                                            </button>
+                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="Delete ">
+                                                                <i class="zmdi zmdi-delete "></i>
+                                                            </button>
+                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="More ">
+                                                                <i class="zmdi zmdi-more "></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody> -->
+                                        </table>
+                                    </div>
+
+                                    <!-- <table class="table table-borderless table-striped table-earning " id="userTable ">
                                         <thead>
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Post Time</th>
-                                                <th>Name</th>
-                                                <th>Likes</th>
-                                                <th>Type</th>
-                                                <th class="text-right ">Approval</th>
-                                                <th class="text-right ">Actions</th>
+                                                <td>No</td>
+                                                <td>Name</td>
+                                                <td>Email</td>
+                                                <td>Role</td>
+                                                <td>Type</td>
 
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody></tbody> -->
+                                    <!-- <tbody>
                                             <tr>
                                                 <td>2018-09-29 05:57</td>
                                                 <td>100398</td>
@@ -203,12 +167,9 @@
                                                 <td>Blood request</td>
                                                 <td class="text-right ">Pending...</td>
                                                 <td>
-                                                    <a class="View " title="View " data-toggle="tooltip "><i
-                                                            class="material-icons ">&#xe8f4;</i></a>
-                                                    <a class="edit " title="Edit " data-toggle="tooltip "><i
-                                                            class="material-icons ">&#xE254;</i></a>
-                                                    <a class="delete " title="Delete " data-toggle="tooltip "><i
-                                                            class="material-icons ">&#xE872;</i></a>
+                                                    <button class="btn btn-info btn-default btn-sm " id="viewMoreDetailsBtn"><i class="fa fa-eye"></i> View </button>
+                                                    <button class="btn btn-success btn-default btn-sm"><i class='fas fa-check'></i> Approve </button>
+                                                    <button class="btn btn-danger btn-default btn-sm"><i class="fa fa-remove"></i> Remove </button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -228,8 +189,8 @@
                                                 </td>
                                             </tr>
 
-                                        </tbody>
-                                    </table>
+                                        </tbody> -->
+                                    <!-- </table> -->
                                 </div>
                             </div>
 
