@@ -39,25 +39,31 @@ $(function() {
         $(document).on("click", "#btnRegister", () => {
 
             if ($("#formAddUser").valid()) {
-                console.log("success!!");
                 firebase.auth().createUserWithEmailAndPassword($("#txtEmail").val(), $("#password").val())
                     .then(
                         (user) => {
                             //check wether there is a user
                             if (user) {
-
                                 var fName = $("#txtFName").val();
                                 var lName = $("#txtLName").val();
                                 var email = $("#txtEmail").val();
                                 var userRole = $("#userRole").val();
+                                var address = '';
+                                var birthDate = '';
+                                var bloodGroup = '';
+                                var mobileNo = '';
 
 
                                 db.collection(COLLECTION_USERS).add({
-
-                                    first_username: fName,
-                                    last_username: lName,
+                                    firstName: fName,
+                                    lastName: lName,
                                     email: email,
-                                    user_role: userRole
+                                    address: address,
+                                    birthDate: birthDate,
+                                    bloodGroup: bloodGroup,
+                                    mobileNo: mobileNo,
+                                    userRole: userRole
+
                                 }).then(result => {
 
                                     alert("User is successfuly registred!");
@@ -95,9 +101,13 @@ $(function() {
             dataTable.row.add(
                 [
                     rowCount++,
-                    data.first_username + " " + data.last_username,
+                    data.firstName + " " + data.lastName,
                     data.email,
-                    data.user_role,
+                    data.userRole,
+                    data.address,
+                    data.birthDate,
+                    data.bloodGroup,
+                    data.mobileNo,
                     '<div class="table-data-feature ">' +
                     '<button id="" ' +
                     'class="item " data-toggle="tooltip " data-placement="top " title="Remove">' +

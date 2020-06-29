@@ -1,115 +1,58 @@
-// $(function() {
+$(function() {
 
-//     let dataTable = $('#EventViewTable').DataTable({
+    let dataTable = $('#EventViewTable').DataTable({
 
-//         destroy: true,
-//         scrollX: true,
-//         searching: false
-//     });
+        destroy: true,
+        scrollX: true,
+        searching: false
+    });
 
-//     // $("#formAddUser").validate({
-//     //     rules: {
-//     //         txtFName: "required",
-//     //         txtLName: "required",
-//     //         txtEmail: {
-//     //             required: true,
-//     //             email: true
-//     //         },
-//     //         password: {
-//     //             required: true,
-//     //             minlength: 6,
+    eventsRef.onSnapshot(function(querySnapshot) {
+        dataTable.clear().draw();
+        let rowCount = 1;
 
-//     //         },
-//     //         confirmPassword: {
-//     //             equalTo: "#password"
-//     //         },
-//     //     },
-//     //     messages: {
-//     //         txtFName: " Enter First Name",
-//     //         txtLName: " Enter Last Name",
-//     //         txtEmail: " Enter Valid Email Address!",
-//     //         password: " Enter Password",
-//     //         confirmPassword: " Enter Confirm Password Same as Password",
-//     //         userRole: {
-//     //             required: "Please select an option from the list!",
-//     //         },
-//     //     }
-//     // });
-//     // $('#formAddUser').ready(function() {
-//     //     $(document).on("click", "#btnRegister", () => {
+        querySnapshot.forEach(function(doc) {
+            let data = doc.data();
+            console.log(data);
 
-//     //         if ($("#formAddUser").valid()) {
-//     //             console.log("success!!");
-//     //             firebase.auth().createUserWithEmailAndPassword($("#txtEmail").val(), $("#password").val())
-//     //                 .then(
-//     //                     (user) => {
-//     //                         //check wether there is a user
-//     //                         if (user) {
-//     //                             var uid = user.uid;
-//     //                             var fName = $("#txtFName").val();
-//     //                             var lName = $("#txtLName").val();
-//     //                             var email = $("#txtEmail").val();
-//     //                             var userRole = $("#userRole").val();
-
-
-//     //                             db.collection(COLLECTION_USERS).add({
-
-//     //                                 first_username: fName,
-//     //                                 last_username: lName,
-//     //                                 email: email,
-//     //                                 user_role: userRole
-//     //                             }).then(result => {
-
-//     //                                 alert("User is successfuly registred!");
-
-//     //                                 $("#formAddUser").trigger("reset");
-//     //                             });
-//     //                         }
-//     //                     }).catch(function(error) {
-//     //                     // Handle Errors here.
-//     //                     var errorCode = error.code;
-//     //                     var errorMessage = error.message;
-//     //                     window.alert("Error:" + errorMessage);
-//     //                 });
-//     //         }
-
-//     //     });
-
-//     // });
-//     // //clear once form is submitted
-//     // $('#formAddUser').ready(function() {
-//     //     $(document).on("click", "#btnClear", () => {
-//     //         $("#formAddUser").trigger("reset");
-//     //     });
-//     // });
-
-
-//     eventsRef.onSnapshot(function(querySnapshot) {
-//         dataTable.clear().draw();
-//         let rowCount = 1;
-
-//         querySnapshot.forEach(function(doc) {
-//             let data = doc.data();
-//             console.log(data);
-
-//             dataTable.row.add(
-//                 [
-//                     rowCount++,
-
-//                     '<div class="table-data-feature ">' +
-//                     '<button id="" ' +
-//                     'class="item " data-toggle="tooltip " data-placement="top " title="Remove">' +
-//                     ' <i class="zmdi zmdi-delete "></i>' +
-//                     '</button>' +
-//                     '</div>'
+            dataTable.row.add(
+                [
+                    rowCount++,
+                    data.bloodGroup,
+                    data.replacementAvailability,
+                    data.unitsOfBlood,
+                    data.requestClose,
+                    data.hospitalName,
+                    data.hospitalAddress,
+                    data.hospitalLat,
+                    data.hospitalLng,
+                    data.userFName + " " + data.userLName,
+                    data.userPhoneNumber,
+                    data.notifyState,
+                    '<div class="table-data-feature ">' +
+                    '<button class="reqEventView" ' +
+                    'class="item " data-toggle="tooltip " data-placement="top " title="View">' +
+                    '<i class="fas fa-eye"></i>' +
+                    '</button>' +
+                    '<button id="" ' +
+                    'class="item " data-toggle="tooltip " data-placement="top " title="Approve">' +
+                    '<i class="fas fa-check"></i>' +
+                    '</button>' +
+                    '<button id="" ' +
+                    'class="item " data-toggle="tooltip " data-placement="top " title="Reject">' +
+                    ' <i class="fas fa-times"></i>' +
+                    '</button>' +
+                    '</div>'
 
 
 
-//                 ]).draw();
+                ]).draw();
+        })
+    });
 
-//         })
-
-//     });
-
-
-// });
+    $('#EventViewTable tbody').on('click', '.reqEventView', function(e) {
+        //var data = table.row( $(this).parents('tr') ).data();
+        console.log("View cliked!");
+        alert("Hello");
+    });
+});

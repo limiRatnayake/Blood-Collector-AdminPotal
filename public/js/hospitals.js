@@ -48,7 +48,6 @@ $(function() {
                 var hospitalLongitude = $("#hospitalLongitude").val();
 
                 db.collection(COLLECTION_HOSPITALS).add({
-
                         bloodBankName: bloodBankName,
                         bloodBankAddress: bloodBankAddress,
                         description: description,
@@ -81,7 +80,6 @@ $(function() {
 
         querySnapshot.forEach(function(doc) {
             let data = doc.data();
-            console.log(data);
 
             dataTable.row.add(
                 [

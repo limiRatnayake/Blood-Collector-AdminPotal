@@ -1,6 +1,7 @@
 const BASE_URL = window.location.origin;
 let currentUser = null;
 const COLLECTION_USERS = "users";
+const COLLECTION_EVENTS = "events";
 const COLLECTION_HOSPITALS = "hospitals";
 
 var firebaseConfig = {
@@ -17,4 +18,5 @@ firebase.initializeApp(firebaseConfig);
 
 let db = firebase.firestore();
 let usersRef = db.collection(COLLECTION_USERS);
+let eventsRef = db.collection(COLLECTION_EVENTS);
 let hospitalListRef = db.collection(COLLECTION_HOSPITALS);
