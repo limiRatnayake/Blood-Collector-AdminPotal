@@ -33,191 +33,97 @@
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="container section__content--p30">
-                    <h2>Events Data</h2>
-                    <!--Add a post-->
-                    <!-- Trigger the modal with a button -->
-                    <div class=" row">
-                        <div class="col-4">
-                            <!-- Modal -->
-                            <div class="modal " id="viewMoreDetails" role="dialog">
-                                <div class="modal-dialog modal-lg ">
-                                    <!-- Modal content-->
-                                    <div class="modal-content ">
-                                        <div class="modal-header" style="padding:35px 50px;">
-
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                                        </div>
-                                        <div class="modal-body" style="padding:25px 45px;">
-                                            <div class="table-responsive table--no-card m-b-40">
-                                                <table class="table table-borderless table-striped table-earning " id="" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>No</td>
-                                                            <td>Name</td>
-                                                            <td>Email</td>
-                                                            <td>Role</td>
-                                                            <td>Type</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody></tbody>
-
-                                                </table>
-                                            </div>
-
-
-
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-danger btn-default " data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
+                    <h2>Request Events </h2>
                 </div>
+                <!-- Blood request container -->
                 <div class="section__content section__content--p30">
                     <div class="container-fluid ">
-                        <!--Post table-->
+                        <!--Blood request Table-->
                         <div class="row ">
                             <div class="col-12 col-lg-12 ">
                                 <div class="table-responsive table--no-card m-b-40 ">
                                     <div class="table-responsive table--no-card m-b-40">
-                                        <table class="table table-borderless table-striped table-earning " id="EventViewTable" style="width:100%">
+                                        <table class="table table-borderless table-striped table-earning " id="ReqEventViewTable" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <td>No</td>
-                                                    <td>Blood Group</td>
-                                                    <td>Replacement Availability</td>
-                                                    <td>Units Of Blood</td>
-                                                    <td>Request Close On</td>
-                                                    <td>Hospital Name</td>
-                                                    <td>Hospital Address</td>
-                                                    <td>HospitalLat</td>
-                                                    <td>hospitalLng</td>
-                                                    <td>User Name</td>
-                                                    <td>User PhoneNumber</td>
-                                                    <td>Notify State</td>
-                                                    <td>Type</td>
+                                                    <th>No</th>
+                                                    <th>Blood Group</th>
+                                                    <th>Replacement Availability</th>
+                                                    <th>Units Of Blood</th>
+                                                    <th>Request Close On</th>
+                                                    <th>Hospital Name</th>
+                                                    <th>Hospital Address</th>
+                                                    <th>HospitalLat</th>
+                                                    <th>hospitalLng</th>
+                                                    <th>User Name</th>
+                                                    <th>User PhoneNumber</th>
+                                                    <th>Notify State</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
+                                                    <th>Type</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blood campaign container -->
+                <div class="container section__content--p30">
+                    <h2>Campaign Events </h2>
+                </div>
+
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid ">
+                        <!--Blood request Table-->
+                        <div class="row ">
+                            <div class="col-12 col-lg-12 ">
+                                <div class="table-responsive table--no-card m-b-40 ">
+                                    <div class="table-responsive table--no-card m-b-40">
+                                        <table class="table table-borderless table-striped table-earning " id="CampEventViewTable" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Name of the Organizer</th>
+                                                    <th>Pick Up Date</th>
+                                                    <th>Start Time</th>
+                                                    <th>End Time</th>
+                                                    <th>Contact Details</th>
+                                                    <th>Place Name</th>
+                                                    <th>Place Address</th>
+                                                    <th>Place Lat</th>
+                                                    <th>Place Lng</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
+                                                    <th>Type</th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
-                                            <!-- <tbody id=" userViewTableData ">
-                                                <tr>
-                                                    <td id="table_number ">
-                                                        <label>
-                                                            <span >1</span>
-                                                        </label>
-                                                    </td>
-                                                    <td id="table_username ">
-                                                        <div class="table-data__info ">
-                                                            <h6>lori lynch</h6>
-                                                            <span>
-                                                                <a href="# ">johndoe@gmail.com</a>
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td id="table_email ">
-                                                        <div class="table-data__info ">
-                                                            <span>
-                                                                <a href="# ">johndoe@gmail.com</a>
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td id="table_role ">
-                                                        <span class="role admin ">admin</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data-feature ">
-                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="Edit ">
-                                                            <i class="zmdi zmdi-edit "></i>
-                                                            </button>
-                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="Delete ">
-                                                                <i class="zmdi zmdi-delete "></i>
-                                                            </button>
-                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="More ">
-                                                                <i class="zmdi zmdi-more "></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody> -->
                                         </table>
                                     </div>
-
-                                    <!-- <table class="table table-borderless table-striped table-earning " id="userTable ">
-                                        <thead>
-                                            <tr>
-                                                <td>No</td>
-                                                <td>Name</td>
-                                                <td>Email</td>
-                                                <td>Role</td>
-                                                <td>Type</td>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody> -->
-                                    <!-- <tbody>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>Denu Jayasinghe</td>
-                                                <td>10</td>
-                                                <td>Blood request</td>
-                                                <td class="text-right ">Pending...</td>
-                                                <td>
-                                                    <button class="btn btn-info btn-default btn-sm " id="viewMoreDetailsBtn"><i class="fa fa-eye"></i> View </button>
-                                                    <button class="btn btn-success btn-default btn-sm"><i class='fas fa-check'></i> Approve </button>
-                                                    <button class="btn btn-danger btn-default btn-sm"><i class="fa fa-remove"></i> Remove </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>Denu Jayasinghe</td>
-                                                <td>10</td>
-                                                <td>Blood campaign</td>
-                                                <td class="text-right ">Pending...</td>
-                                                <td>
-                                                    <a class="View " title="View " data-toggle="tooltip "><i
-                                                            class="material-icons ">&#xe8f4;</i></a>
-                                                    <a class="edit " title="Edit " data-toggle="tooltip "><i
-                                                            class="material-icons ">&#xE254;</i></a>
-                                                    <a class="delete " title="Delete " data-toggle="tooltip "><i
-                                                            class="material-icons ">&#xE872;</i></a>
-                                                </td>
-                                            </tr>
-
-                                        </tbody> -->
-                                    <!-- </table> -->
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
+
+
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER -->
+
+
         </div>
 
-    </div>
+        <!--Model js-->
+        <script src="../js/button.js">
+        </script>
 
-    <!--Model js-->
-    <script src="../js/button.js">
-    </script>
-
-    <%-include('../layouts/footer-layout');-%>
+        <%-include('../layouts/footer-layout');-%>
 </body>
 
 </html>
