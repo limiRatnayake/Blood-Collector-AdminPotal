@@ -26,6 +26,7 @@ $(function() {
             if (data.userFName == null) {
                 return false;
             }
+
             dataTable.row.add(
                 [
                     rowCount++,

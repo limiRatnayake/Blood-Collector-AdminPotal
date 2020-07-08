@@ -54,6 +54,7 @@
                                             <thead>
                                                 <tr>
                                                     <td>No</td>
+                                                    <td id="uid" style="display:none;">UID</td>
                                                     <td>Name</td>
                                                     <td>Email</td>
                                                     <td>Role</td>
@@ -61,51 +62,11 @@
                                                     <td>Birth Date</td>
                                                     <td>Blood Group</td>
                                                     <td>Mobile No</td>
+                                                    <td style="display:none;">Disabled</td>
                                                     <td>Type</td>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
-                                            <!-- <tbody id=" userViewTableData ">
-                                                <tr>
-                                                    <td id="table_number ">
-                                                        <label>
-                                                            <span >1</span>
-                                                        </label>
-                                                    </td>
-                                                    <td id="table_username ">
-                                                        <div class="table-data__info ">
-                                                            <h6>lori lynch</h6>
-                                                            <span>
-                                                                <a href="# ">johndoe@gmail.com</a>
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td id="table_email ">
-                                                        <div class="table-data__info ">
-                                                            <span>
-                                                                <a href="# ">johndoe@gmail.com</a>
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td id="table_role ">
-                                                        <span class="role admin ">admin</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data-feature ">
-                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="Edit ">
-                                                            <i class="zmdi zmdi-edit "></i>
-                                                            </button>
-                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="Delete ">
-                                                                <i class="zmdi zmdi-delete "></i>
-                                                            </button>
-                                                            <button class="item " data-toggle="tooltip " data-placement="top " title="More ">
-                                                                <i class="zmdi zmdi-more "></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody> -->
                                         </table>
                                     </div>
 
@@ -116,21 +77,13 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
     </div>
 
-    <!--Model-->
-    <script>
-        $(document).ready(function() {
-            $("#addUserBtn ").click(function() {
-                $("#addUserModal ").modal({
-
-                });
-            });
-        });
-    </script>
 
     <%-include('../layouts/footer-layout');-%>
 

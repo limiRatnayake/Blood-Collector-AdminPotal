@@ -32,8 +32,18 @@ $(function() {
         if ($("#formSignIn").valid()) {
             firebase.auth().signInWithEmailAndPassword($("#txtEmail").val(), $("#txtPassword").val())
                 .then(result => {
-                    alert("You have successfully login!!")
-                    window.location.href = window.location.origin + "/main/events";
+                    try {
+
+
+                        alert("You have successfully login!!")
+                        window.location.href = window.location.origin + "/main/events";
+
+
+                    } catch (error) {
+                        var errorMessage = error.message;
+                        window.alert("Error:" + errorMessage);
+                    }
+
                 })
                 .catch(function(error) {
                     // Handle Errors here.

@@ -1,34 +1,41 @@
-// const firebase = require("../config/firebase-config");
+const firebaseAdmin = require("../config/firebase-admin-config");
 
-// const db = firebase.firestore();
-// const userModel = {};
+const db = firebaseAdmin.firestore();
 
-// const COLLECTION_USERS = "users";
+module.exports = async(req, res) => {
+    try {
+        // var data = await _getUserData(req.body);
+        var data = req.body;
+        console.log(data)
+            //toggle the disbaled value that pass from frontend
+        var disabled = data.disabled ? false : true;
+        console.log(disabled)
+        var userRecord = await firebaseAdmin.auth().updateUser(data.uid, {
+            disabled: disabled
+        });
 
-// userModel.createAccount = data => {
-//     return new Promise((resolve, reject) => {
-//         firebase
-//             .auth()
-//             .createUserWithEmailAndPassword(data.email, data.password)
-//             .then(result => {
-//                 try {
-//                     let user = result.user;
-
-//                     _setUserData("", user.uid, data).then(
-//                         result => {
-//                             resolve(result);
-//                         },
-//                         error => {
-//                             console.log(error);
-//                             reject(error);
-//                         }
-//                     )
-//                 } catch (error) {
-//                     console.log(error);
-//                     reject(error);
-//                 }
-//             })
-//     })
-// }
-
-// module.exports = userModel;
+        await db
+            .collection("users")
+            .doc(data.uid)
+            .update({
+                disabled: disabled
+            });
+        res.send({
+            code: 200,
+            data: userRecord.uid,
+        });
+    } catch (err) {
+        console.log("Errors:", err);
+        if (err) {
+            res.send({
+                code: 400,
+                errors: err.errors,
+            });
+        } else {
+            res.send({
+                code: 400,
+                errors: [err],
+            });
+        }
+    }
+};

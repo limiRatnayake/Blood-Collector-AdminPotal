@@ -1,10 +1,15 @@
 $(function() {
 
+    const db = firebase.firestore();
     let dataTable = $('#userViewTable').DataTable({
         destroy: true,
         scrollX: true,
-        searching: false
+        searching: false,
+
     });
+    //hide some columns
+    dataTable.columns(1).visible(false);
+    dataTable.columns(9).visible(false);
 
     $("#formAddUser").validate({
         rules: {
@@ -35,15 +40,19 @@ $(function() {
         }
     });
 
+
     $('#formAddUser').ready(function() {
         $(document).on("click", "#btnRegister", () => {
 
             if ($("#formAddUser").valid()) {
                 firebase.auth().createUserWithEmailAndPassword($("#txtEmail").val(), $("#password").val())
                     .then(
-                        (user) => {
-                            //check wether there is a user
-                            if (user) {
+
+                        result => {
+                            //check whether there is a user
+                            try {
+                                let user = result.user;
+
                                 var fName = $("#txtFName").val();
                                 var lName = $("#txtLName").val();
                                 var email = $("#txtEmail").val();
@@ -53,8 +62,8 @@ $(function() {
                                 var bloodGroup = '';
                                 var mobileNo = '';
 
-
-                                db.collection(COLLECTION_USERS).add({
+                                db.collection(COLLECTION_USERS).doc(user.uid).set({
+                                    uid: user.uid,
                                     firstName: fName,
                                     lastName: lName,
                                     email: email,
@@ -62,21 +71,25 @@ $(function() {
                                     birthDate: birthDate,
                                     bloodGroup: bloodGroup,
                                     mobileNo: mobileNo,
-                                    userRole: userRole
+                                    userRole: userRole,
+                                    disabled: false
 
-                                }).then(result => {
+                                })
+                                alert("User is successfuly registred!");
 
-                                    alert("User is successfuly registred!");
+                                $("#formAddUser").trigger("reset");
+                            } catch (error) {
 
-                                    $("#formAddUser").trigger("reset");
-                                });
+                                var errorMessage = error.message;
+                                window.alert("Error:" + errorMessage);
                             }
+
                         }).catch(function(error) {
                         // Handle Errors here.
                         var errorCode = error.code;
                         var errorMessage = error.message;
                         window.alert("Error:" + errorMessage);
-                    });
+                    })
             }
 
         });
@@ -88,77 +101,106 @@ $(function() {
             $("#formAddUser").trigger("reset");
         });
     });
+    dataAdd();
+
+    function dataAdd() {
+        usersRef.onSnapshot(function(querySnapshot) {
+            dataTable.clear().draw();
+            let rowCount = 1;
+
+            querySnapshot.forEach(function(doc) {
+                let data = doc.data();
+                let btnDisable;
+
+                if (data.disabled) {
+                    //To enable it again (disable = false)
+                    btnDisable =
+                        '<button id="uid"' +
+                        data.uid +
+                        '" type="button" class="btn btn-success btnDelete">Enable</button>';
+
+                } else {
+                    btnDisable =
+                        '<button id=""' +
+                        data.uid +
+                        '" type="button" class="btn btn-danger btnDelete">Disable</button>';
+                }
+
+                dataTable.row.add(
+                    [
+                        rowCount++,
+                        data.uid,
+                        data.firstName + " " + data.lastName,
+                        data.email,
+                        data.userRole,
+                        data.address,
+                        data.birthDate,
+                        data.bloodGroup,
+                        data.mobileNo,
+                        data.disabled,
+                        '<div class="buttons" id="btn-group"  role="group">' + btnDisable + "</div>"
+                    ]).draw();
+            })
+        });
+    }
 
 
-    usersRef.onSnapshot(function(querySnapshot) {
-        dataTable.clear().draw();
-        let rowCount = 1;
+    $('#userViewTable tbody').on('click', '.btnDelete', function() {
 
-        querySnapshot.forEach(function(doc) {
-            let data = doc.data();
-            console.log(data);
+        console.log("press");
+        var data = dataTable.row($(this).parents('tr')).data();
+        var uid = data[1];
+        var disabled = data[9];
 
-            dataTable.row.add(
-                [
-                    rowCount++,
-                    data.firstName + " " + data.lastName,
-                    data.email,
-                    data.userRole,
-                    data.address,
-                    data.birthDate,
-                    data.bloodGroup,
-                    data.mobileNo,
-                    '<div class="table-data-feature ">' +
-                    '<button id="" ' +
-                    'class="item " data-toggle="tooltip " data-placement="top " title="Remove">' +
-                    ' <i class="zmdi zmdi-delete "></i>' +
-                    '</button>' +
-                    '</div>'
+        let userData = {
+            uid: uid,
+            disabled: disabled
+
+        };
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You can always change your mind later!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+        }).then(result => {
+            if (result.value) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/disabled',
+                    data: JSON.stringify(userData),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(data) {
+                        Swal.fire(
+                            'User Update!',
+                            'Your file has been updated.',
+                            'success'
+                        )
+                    },
+                    error: function() {
+                        Swal.fire(
+                            "User Update!",
+                            "The user update failed!",
+                            "error"
+                        );
+                        console.log('error');
+                    }
+                });
+            }
+
+        });
 
 
-
-                ]).draw();
-
-        })
 
     });
-    // $(document).ready(function() {
-    //     console.log("ready!");
-    //     const showFirestoreDatabase = () => {
 
-    //         db.collection(COLLECTION_USERS).get().then(function(querySnapshot) {
-    //             var dataSet = [];
-    //             var i = 1;
-    //             $('#userViewTable').DataTable().rows().clear().draw();
-    //             // $("#userViewTable tr").remove();
-    //             querySnapshot.forEach(function(doc) {
 
-    //                 let data = doc.data();
-    //                 // $("#rowLogisticDeps").empty();
-    //                 if (doc.exists) {
-    //                     // console.log("Data exists document:", data);
-    //                     dataSet.push([data.first_username, data.last_username, data.email, data.user_role]);
-    //                     i = i + 1;
-    //                     // $("#userViewTable").html(dataSet.length);
-    //                     // console.log("Data shown", dataSet);
-    //                 } else {
-    //                     console.error("Error")
-    //                 }
-    //             })
-    //             console.log("data", dataSet);
-    //             $('#userViewTable').DataTable({
-    //                 data: dataSet,
-    //                 columns: [
-    //                     { title: "Name" },
-    //                     { title: "Email" },
-    //                     { title: "Role" },
-    //                 ],
-    //             });
 
-    //         })
-    //     }
-    //     showFirestoreDatabase();
 
-    // })
+
+
 
 });

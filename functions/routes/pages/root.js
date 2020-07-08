@@ -3,6 +3,7 @@ const express = require("express"); // use require function along with the name 
 
 const router = express.Router();
 
+
 router.get("/", (req, res) => {
     res.render("sign-in", {
         slug: "sign-in",

@@ -1,11 +1,9 @@
 const express = require("express");
 
-//pages
-const v1 = require("./v1/v1");
-
 const router = express.Router();
 
 
-router.use("/v1", v1);
+// USER
+router.post("/disabled", require("../../models/user-model"));
 
 module.exports = router;
