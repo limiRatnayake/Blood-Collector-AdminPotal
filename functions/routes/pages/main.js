@@ -11,9 +11,9 @@ router.get("/events", (req, res) => {
     })
 });
 
-router.get("/admin-users-view", (req, res) => {
-    res.render("user/admin-users-view", {
-        slug: "admin-users-view",
+router.get("/user-data-view", (req, res) => {
+    res.render("user/user-data-view", {
+        slug: "user-data-view",
         title: "Admin User View",
         subTitle: "Admin User View",
         hasTables: true,

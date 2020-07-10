@@ -4,6 +4,7 @@ $(function() {
         if (user) {
             //user is sign-in
             window.location.href = window.location.origin + "/main/events";
+
         }
     });
 

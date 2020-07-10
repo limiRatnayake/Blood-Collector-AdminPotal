@@ -101,6 +101,8 @@ $(function() {
             $("#formAddUser").trigger("reset");
         });
     });
+
+    //call the function that that add data to the rows
     dataAdd();
 
     function dataAdd() {
@@ -165,6 +167,7 @@ $(function() {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes",
+            allowOutsideClick: false
         }).then(result => {
             if (result.value) {
                 $.ajax({
@@ -192,15 +195,6 @@ $(function() {
             }
 
         });
-
-
-
     });
-
-
-
-
-
-
 
 });
