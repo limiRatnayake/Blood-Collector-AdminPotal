@@ -9,7 +9,7 @@ $(function() {
     });
     //hide some columns
     dataTable.columns(1).visible(false);
-    dataTable.columns(9).visible(false);
+    dataTable.columns(8).visible(false);
 
     $("#formAddUser").validate({
         rules: {
@@ -19,10 +19,16 @@ $(function() {
                 required: true,
                 email: true
             },
+            txtaddress: {
+                required: true,
+            },
+            txtmobileNo: {
+                required: true,
+                minlength: 9,
+            },
             password: {
                 required: true,
                 minlength: 6,
-
             },
             confirmPassword: {
                 equalTo: "#password"
@@ -32,9 +38,14 @@ $(function() {
             txtFName: " Enter First Name",
             txtLName: " Enter Last Name",
             txtEmail: " Enter Valid Email Address!",
+            txtaddress: " Enter Address",
+            txtmobileNo: " Enter your Phone number",
             password: " Enter Password",
             confirmPassword: " Enter Confirm Password Same as Password",
             userRole: {
+                required: "Please select an option from the list!",
+            },
+            userBloodGroup: {
                 required: "Please select an option from the list!",
             },
         }
@@ -58,9 +69,8 @@ $(function() {
                                 var email = $("#txtEmail").val();
                                 var userRole = $("#userRole").val();
                                 var address = '';
-                                var birthDate = '';
                                 var bloodGroup = '';
-                                var mobileNo = '';
+                                var mobileNo = $("#txtmobileNo").val();;
 
                                 db.collection(COLLECTION_USERS).doc(user.uid).set({
                                     uid: user.uid,
@@ -68,7 +78,6 @@ $(function() {
                                     lastName: lName,
                                     email: email,
                                     address: address,
-                                    birthDate: birthDate,
                                     bloodGroup: bloodGroup,
                                     mobileNo: mobileNo,
                                     userRole: userRole,
@@ -136,7 +145,6 @@ $(function() {
                         data.email,
                         data.userRole,
                         data.address,
-                        data.birthDate,
                         data.bloodGroup,
                         data.mobileNo,
                         data.disabled,
@@ -152,7 +160,7 @@ $(function() {
         console.log("press");
         var data = dataTable.row($(this).parents('tr')).data();
         var uid = data[1];
-        var disabled = data[9];
+        var disabled = data[8];
 
         let userData = {
             uid: uid,
@@ -178,15 +186,15 @@ $(function() {
                     dataType: "json",
                     success: function(data) {
                         Swal.fire(
-                            'User Update!',
-                            'Your file has been updated.',
+                            'User Updated!',
+                            'Your file has been Updated.',
                             'success'
                         )
                     },
                     error: function() {
                         Swal.fire(
-                            "User Update!",
-                            "The user update failed!",
+                            "User Updated!",
+                            "The user updated failed!",
                             "error"
                         );
                         console.log('error');

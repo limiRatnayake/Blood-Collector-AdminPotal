@@ -41,4 +41,14 @@ router.get("/add-hospitals", (req, res) => {
     })
 });
 
+router.get("/user-profile", (req, res) => {
+    res.render("user/user-profile", {
+        slug: "user-profile",
+        title: "User Profile",
+        subTitle: "User profile",
+        hasTables: true,
+        hasCharts: false
+    })
+});
+
 module.exports = router;

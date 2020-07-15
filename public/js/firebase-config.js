@@ -1,5 +1,4 @@
 const BASE_URL = window.location.origin;
-let currentUser;
 const COLLECTION_USERS = "users";
 const COLLECTION_EVENTS = "events";
 const COLLECTION_HOSPITALS = "hospitals";

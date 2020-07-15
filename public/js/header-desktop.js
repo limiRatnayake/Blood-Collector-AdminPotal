@@ -15,10 +15,10 @@ $(function() {
                             $("#accDropdownUserRole").html("User Role: " + userData.userRole);
 
                         });
-                        Swal.close();
                     },
                     function(error) {
-
+                        var errorMessage = error.message;
+                        window.alert("Error:" + errorMessage);
                     }
                 );
         } else {
