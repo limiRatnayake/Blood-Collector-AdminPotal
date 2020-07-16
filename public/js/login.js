@@ -11,13 +11,37 @@ $(function() {
                 minlength: 6,
             }
         },
-
+        messages: {
+            txtEmail: " Enter Valid Email Address!",
+            txtPassword: " Enter Password",
+        }
     });
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             //user is sign-in
-            window.location.href = window.location.origin + "/main/events";
+            db.collection(COLLECTION_USERS)
+                .where("uid", "==", user.uid)
+                .onSnapshot(
+                    function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                            let userData = doc.data();
+                            console.log(userData.userRole)
+                            var userRole = userData.userRole
+                            if (userRole == 'Admin') {
+                                // alert("You have successfully login!!");
+                                window.location.href = window.location.origin + "/main/events";
+                            } else {
+                                // alert("Not")
+                            }
+                        });
+                    },
+                    function(error) {
+                        var errorMessage = error.message;
+                        window.alert("Error:" + errorMessage);
+                    }
+                );
+            // window.location.href = window.location.origin + "/main/events";
 
         }
 
@@ -29,37 +53,112 @@ $(function() {
     //     }, 'Please enter a valif email'
     // );
 
+    // const currentUser = firebase.auth().currentUser;
+    $('#formSignIn').ready(function() {
+        $(document).on("click", "#btnLogin", () => {
+            var data = {
+                email: $("#txtEmail").val(),
+                password: $("#txtPassword").val()
+            };
+            if ($("#formSignIn").valid()) {
+                // try {
+                firebase.auth().signInWithEmailAndPassword(data.email, data.password)
+                    .then(result => {
+                        let user = result.user;
+                        db.collection(COLLECTION_USERS)
+                            .where("uid", "==", user.uid)
+                            .onSnapshot(
+                                function(querySnapshot) {
+                                    querySnapshot.forEach(function(doc) {
+                                        let userData = doc.data();
+                                        console.log(userData.userRole)
+                                        var userRole = userData.userRole
+                                        if (userRole == 'Admin') {
+                                            alert("You have successfully login!!");
+                                            window.location.href = window.location.origin + "/main/events";
+                                        } else {
+                                            alert("Not")
+                                        }
+                                    });
+                                },
+                                function(error) {
+                                    var errorMessage = error.message;
+                                    window.alert("Error:" + errorMessage);
+                                }
+                            );
+                        // console.log()
+                        // if (document.get('userRole') != 'User') {
+                        //     alert("You have successfully login!!")
+                        // } else {
+                        //     alert("Not")
+                        // }
+                        // try {
+
+                        //     alert("You have successfully login!!")
+                        //     window.location.href = window.location.origin + "/main/events";
 
 
-    $(document).on("click", "#btnLogin", () => {
-        if ($("#formSignIn").valid()) {
-            firebase.auth().signInWithEmailAndPassword($("#txtEmail").val(), $("#txtPassword").val())
-                .then(result => {
-                    try {
-                        alert("You have successfully login!!")
-                        window.location.href = window.location.origin + "/main/events";
+                        // } catch (error) {
+                        //     var errorMessage = error.message;
+                        //     window.alert("Error:" + errorMessage);
+                        // }
 
-
-                    } catch (error) {
+                    })
+                    .catch(function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
                         var errorMessage = error.message;
+
                         window.alert("Error:" + errorMessage);
-                    }
+                    });
 
-                })
-                .catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
+                // } catch (error) {
+                //     var errorMessage = error.message;
+                //     window.alert("Error:" + errorMessage);
+                // }
 
-                    window.alert("Error:" + errorMessage);
-                });
+            }
+            // else {
+            //     alert("Form is not valid!")
+            // }
+        });
 
-
-
-        } else {
-            alert("Only admin users can log in")
-        }
     });
+
+    // $(document).on("click", "#btnLogin", () => {
+    //     if ($("#formSignIn").valid()) {
+    //         try {
+    //             firebase.auth().signInWithEmailAndPassword($("#txtEmail").val(), $("#txtPassword").val())
+    //                 .then(result => {
+    //                     try {
+
+    //                         alert("You have successfully login!!")
+    //                         window.location.href = window.location.origin + "/main/events";
+
+
+    //                     } catch (error) {
+    //                         var errorMessage = error.message;
+    //                         window.alert("Error:" + errorMessage);
+    //                     }
+
+    //                 })
+    //                 .catch(function(error) {
+    //                     // Handle Errors here.
+    //                     var errorCode = error.code;
+    //                     var errorMessage = error.message;
+
+    //                     window.alert("Error:" + errorMessage);
+    //                 });
+
+    //         } catch (error) {
+    //             var errorMessage = error.message;
+    //             window.alert("Error:" + errorMessage);
+    //         }
+
+    //     } else {
+    //         alert("Form is not valid!")
+    //     }
+    // });
 
 
     // // jquery onclick listener  

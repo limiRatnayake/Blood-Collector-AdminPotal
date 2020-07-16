@@ -51,6 +51,27 @@ $(function() {
         }
     });
 
+    $("#formUpdateUserPwd").validate({
+        rules: {
+            CurrentPassword: {
+                required: true,
+                minlength: 6,
+            },
+            newPassword: {
+                required: true,
+                minlength: 6,
+            },
+            confirmNewPassword: {
+                equalTo: "#newPassword"
+            },
+        },
+        messages: {
+            CurrentPassword: " Enter Your current Password",
+            newPassword: "Enter a new password",
+            confirmNewPassword: " Enter the same Password as before",
+
+        }
+    });
     firebase.auth().onAuthStateChanged(function(user) {
 
         if (user) {
@@ -196,12 +217,86 @@ $(function() {
 
                 });
             });
+
+            // User Password Update
+            $('#formUpdateUserPwd').ready(function() {
+                $(document).on("click", "#btnPwdUpdate", () => {
+                    console.log("press")
+                    var newPassword = $("#newPassword").val();
+                    var password = $("#CurrentPassword").val();
+
+                    const emailCredential = firebase.auth.EmailAuthProvider.credential(user.email, password);
+
+                    user.reauthenticateWithCredential(emailCredential).then(function() {
+                        // User re-authenticated.
+                        if ($("#formUpdateUserPwd").valid()) {
+                            Swal.fire({
+                                title: "Are you sure?",
+                                text: "You can always change your mind later!",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Yes",
+                                allowOutsideClick: false
+                            }).then(result => {
+                                if (result.value) {
+                                    var user = firebase.auth().currentUser;
+                                    if (newPassword != password) {
+                                        user.updatePassword(newPassword).then(function() {
+                                            // Update successful.
+
+                                            Toast.fire({
+                                                icon: 'success',
+                                                title: 'Password update successfully!',
+
+                                            })
+                                            $("#formUpdateUserPwd").trigger("reset");
+
+                                        }).catch(function(error) {
+                                            // An error happened.
+                                            Swal.fire(
+                                                "Update User Email Address!",
+                                                "The user email update failed" + error,
+                                                "warning"
+                                            );
+                                        });
+                                    } else {
+                                        Swal.fire(
+                                            "This passowrd is your old password!",
+                                        );
+                                    }
+
+                                }
+
+                            });
+                        }
+
+                    }).catch(function(error) {
+                        // An error happened.
+                        // window.alert("Error:" + error);
+                        Swal.fire(
+                            "Reauthentication!",
+                            "The user reauthentication failed!" + error,
+                            "warning"
+                        );
+                    });
+
+                });
+            });
         }
     });
-    //clear once form is submitted
+    //clear once Email form is submitted
     $('#formUpdateUserEmail').ready(function() {
         $(document).on("click", "#btnEmailClear", () => {
             $("#formUpdateUserEmail").trigger("reset");
         });
     });
+    //clear once Passowrd form is submitted
+    $('#formUpdateUserPwd').ready(function() {
+        $(document).on("click", "#btnPwdClear", () => {
+            $("#formUpdateUserPwd").trigger("reset");
+        });
+    });
+
 });
