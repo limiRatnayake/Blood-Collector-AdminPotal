@@ -427,7 +427,7 @@ section {
 }
 
 .login-checkbox>label>a {
-    color: #ff2e44;
+    color: gray;
 }
 
 @media (max-width: 991px) {

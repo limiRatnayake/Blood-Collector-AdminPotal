@@ -30,7 +30,13 @@ $(function() {
                             var userRole = userData.userRole
                             if (userRole == 'Admin') {
                                 // alert("You have successfully login!!");
+                                Swal.fire(
+                                    "Update User Email Address!",
+                                    "The user email update failed" + error,
+                                    "warning"
+                                );
                                 window.location.href = window.location.origin + "/main/events";
+
                             } else {
                                 // alert("Not")
                             }

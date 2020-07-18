@@ -14,11 +14,11 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/sign-up", (req, res) => {
-    res.render("sign-up", {
-        slug: "sign-up",
-        title: "Sign Up",
-        subTitle: "Sign Up",
+router.get("/forget-password", (req, res) => {
+    res.render("forget-password", {
+        slug: "forget-password",
+        title: "Forget Password",
+        subTitle: "Forget Password",
         hasTables: false,
         hasCharts: false
     });
