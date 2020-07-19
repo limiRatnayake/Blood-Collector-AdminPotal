@@ -13,7 +13,6 @@ module.exports = async(req, res) => {
         var userRecord = await firebaseAdmin.auth().updateUser(data.uid, {
             disabled: disabled
         });
-
         await db
             .collection("users")
             .doc(data.uid)
@@ -24,6 +23,17 @@ module.exports = async(req, res) => {
             code: 200,
             data: userRecord.uid,
         });
+        admin.auth().revokeRefreshTokens(data.uid)
+            .then(() => {
+                return admin.auth().getUser(data.uid);
+            })
+            .then((userRecord) => {
+                return new Date(userRecord.tokensValidAfterTime).getTime() / 1000;
+            })
+            .then((timestamp) => {
+                console.log('Tokens revoked at: ', timestamp);
+            });
+
     } catch (err) {
         console.log("Errors:", err);
         if (err) {
