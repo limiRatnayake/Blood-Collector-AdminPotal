@@ -11,11 +11,31 @@ router.get("/events", (req, res) => {
     })
 });
 
-router.get("/user-data-view", (req, res) => {
-    res.render("user/user-data-view", {
-        slug: "user-data-view",
+router.get("/all-user-data-view", (req, res) => {
+    res.render("user/all-user-data-view", {
+        slug: "all-user-data-view",
+        title: "All User View",
+        subTitle: "All User View",
+        hasTables: true,
+        hasCharts: false
+    })
+});
+
+router.get("/admin-user-data-view", (req, res) => {
+    res.render("user/admin-user-data-view", {
+        slug: "admin-user-data-view",
         title: "Admin User View",
         subTitle: "Admin User View",
+        hasTables: true,
+        hasCharts: false
+    })
+});
+
+router.get("/users-data-view", (req, res) => {
+    res.render("user/users-data-view", {
+        slug: "users-data-view",
+        title: "Users View",
+        subTitle: "Users View",
         hasTables: true,
         hasCharts: false
     })

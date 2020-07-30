@@ -1,7 +1,7 @@
 $(function() {
 
     const db = firebase.firestore();
-    let dataTable = $('#userViewTable').DataTable({
+    let dataTable = $('#allUserViewTable').DataTable({
         destroy: true,
         scrollX: true,
         searching: false,
@@ -155,7 +155,7 @@ $(function() {
     }
 
 
-    $('#userViewTable tbody').on('click', '.btnDelete', function() {
+    $('#allUserViewTable tbody').on('click', '.btnDelete', function() {
 
         console.log("press");
         var data = dataTable.row($(this).parents('tr')).data();
@@ -203,6 +203,11 @@ $(function() {
             }
 
         });
+    });
+
+    $("#select").change(function() {
+        var option = $(this).find('option:selected');
+        window.location.href = option.data("url");
     });
 
 });

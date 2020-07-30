@@ -41,16 +41,19 @@
                                     <h3 class="title-3 m-b-30">
                                         <i class="zmdi zmdi-account-calendar"></i>user data</h3>
                                     <div class="rs-select2--dark rs-select2--md m-r-10 m-b-30 rs-select2--border">
-                                        <select class="js-select2" name="property">
-                                                <option selected="selected" >Select users</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="User">Users</option>
-                                                <option value="All">All</option>
-                                            </select>
+                                        <div class="rs-select2--dark rs-select2--md m-r-10 m-b-30 rs-select2--border">
+                                            <select class="js-select2" id="select" name="property">
+                                                    <option selected="selected" >Select users</option>
+                                                    <option data-url="admin-user-data-view">Admin</option>
+                                                    <option data-url="users-data-view">Users</option>
+                                                    <option data-url="all-user-data-view">All</option>
+                                                </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
                                         <div class="dropDownSelect2"></div>
                                     </div>
                                     <div class="table-responsive table--no-card m-b-40">
-                                        <table class="table table-borderless table-striped table-earning " id="userViewTable" style="width:100%">
+                                        <table class="table table-borderless table-striped table-earning " id="usersViewTable" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <td>No</td>

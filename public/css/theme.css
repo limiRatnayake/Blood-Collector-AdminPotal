@@ -785,7 +785,7 @@ section {
 
 .au-input {
     line-height: 43px;
-    border: 1px solid #e5e5e5;
+    /* border: 1px solid #e5e5e5; */
     font-size: 14px;
     color: #666;
     padding: 0 17px;
@@ -815,6 +815,7 @@ section {
 
 .au-input--full {
     width: 100%;
+    border: 1px solid #e5e5e5;
 }
 
 .au-input--h65 {
