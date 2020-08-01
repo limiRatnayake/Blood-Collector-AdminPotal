@@ -4,7 +4,6 @@ $(function() {
     let dataTable = $('#allUserViewTable').DataTable({
         destroy: true,
         scrollX: true,
-        searching: false,
 
     });
     //hide some columns
@@ -51,59 +50,131 @@ $(function() {
         }
     });
 
-
     $('#formAddUser').ready(function() {
         $(document).on("click", "#btnRegister", () => {
 
             if ($("#formAddUser").valid()) {
-                firebase.auth().createUserWithEmailAndPassword($("#txtEmail").val(), $("#password").val())
-                    .then(
+                console.log("press");
+                var auth = firebase.auth();
 
-                        result => {
-                            //check whether there is a user
-                            try {
-                                let user = result.user;
+                var fName = $("#txtFName").val();
+                var lName = $("#txtLName").val();
+                var email = $("#txtEmail").val();
+                var passsword = $("#password").val();
+                var userRole = $("#userRole").val();
+                var address = $("#txtaddress").val();
+                var bloodGroup = $("#userBloodGroup").val();
+                var mobileNo = $("#txtmobileNo").val();
 
-                                var fName = $("#txtFName").val();
-                                var lName = $("#txtLName").val();
-                                var email = $("#txtEmail").val();
-                                var userRole = $("#userRole").val();
-                                var address = '';
-                                var bloodGroup = '';
-                                var mobileNo = $("#txtmobileNo").val();;
+                let userData = {
+                    address: address,
+                    bloodGroup: bloodGroup,
+                    disabled: false,
+                    email: email,
+                    passsword: passsword,
+                    firstName: fName,
+                    lastName: lName,
+                    mobileNo: mobileNo,
+                    userRole: userRole
+                };
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You can always change your mind later!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes",
+                    allowOutsideClick: false
+                }).then(result => {
+                    if (result.value) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/api/add-admin-user',
+                            data: JSON.stringify(userData),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function(data) {
+                                auth.sendPasswordResetEmail(email).then(function() {
+                                    // Email sent.
+                                    Swal.fire(
+                                        'User Created!',
+                                        'User will get an password resend email',
+                                        'success'
+                                    );
 
-                                db.collection(COLLECTION_USERS).doc(user.uid).set({
-                                    uid: user.uid,
-                                    firstName: fName,
-                                    lastName: lName,
-                                    email: email,
-                                    address: address,
-                                    bloodGroup: bloodGroup,
-                                    mobileNo: mobileNo,
-                                    userRole: userRole,
-                                    disabled: false
+                                });
 
-                                })
-                                alert("User is successfuly registred!");
 
-                                $("#formAddUser").trigger("reset");
-                            } catch (error) {
-
-                                var errorMessage = error.message;
-                                window.alert("Error:" + errorMessage);
+                            },
+                            error: function() {
+                                Swal.fire(
+                                    "User Created!",
+                                    "The user creating failed!",
+                                    "error"
+                                );
+                                console.log('error');
                             }
-
-                        }).catch(function(error) {
-                        // Handle Errors here.
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        window.alert("Error:" + errorMessage);
-                    })
+                        });
+                    }
+                    $("#formAddUser").trigger("reset");
+                });
             }
-
         });
 
     });
+    // $('#formAddUser').ready(function() {
+    //     $(document).on("click", "#btnRegister", () => {
+
+    //         if ($("#formAddUser").valid()) {
+    //             firebase.auth().createUserWithEmailAndPassword($("#txtEmail").val(), $("#password").val())
+    //                 .then(
+
+    //                     result => {
+    //                         //check whether there is a user
+    //                         try {
+    //                             let user = result.user;
+
+    //                             var fName = $("#txtFName").val();
+    //                             var lName = $("#txtLName").val();
+    //                             var email = $("#txtEmail").val();
+    //                             var userRole = $("#userRole").val();
+    //                             var address = $("#txtaddress").val();
+    //                             var bloodGroup = $("#userBloodGroup").val();
+    //                             var mobileNo = $("#txtmobileNo").val();;
+
+    //                             db.collection(COLLECTION_USERS).doc(user.uid).set({
+    //                                 uid: user.uid,
+    //                                 firstName: fName,
+    //                                 lastName: lName,
+    //                                 email: email,
+    //                                 address: address,
+    //                                 bloodGroup: bloodGroup,
+    //                                 mobileNo: mobileNo,
+    //                                 userRole: userRole,
+    //                                 disabled: false
+
+    //                             })
+    //                             alert("User is successfuly registred!");
+
+    //                             $("#formAddUser").trigger("reset");
+    //                         } catch (error) {
+
+    //                             var errorMessage = error.message;
+    //                             window.alert("Error:" + errorMessage);
+    //                         }
+
+    //                     }).catch(function(error) {
+    //                     // Handle Errors here.
+    //                     var errorCode = error.code;
+    //                     var errorMessage = error.message;
+    //                     window.alert("Error:" + errorMessage);
+    //                 })
+    //         }
+
+    //     });
+
+    // });
     //clear once form is submitted
     $('#formAddUser').ready(function() {
         $(document).on("click", "#btnClear", () => {

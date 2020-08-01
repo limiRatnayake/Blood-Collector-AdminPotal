@@ -23,16 +23,16 @@ module.exports = async(req, res) => {
             code: 200,
             data: userRecord.uid,
         });
-        admin.auth().revokeRefreshTokens(data.uid)
-            .then(() => {
-                return admin.auth().getUser(data.uid);
-            })
-            .then((userRecord) => {
-                return new Date(userRecord.tokensValidAfterTime).getTime() / 1000;
-            })
-            .then((timestamp) => {
-                console.log('Tokens revoked at: ', timestamp);
-            });
+        // admin.auth().revokeRefreshTokens(data.uid)
+        //     .then(() => {
+        //         return admin.auth().getUser(data.uid);
+        //     })
+        //     .then((userRecord) => {
+        //         return new Date(userRecord.tokensValidAfterTime).getTime() / 1000;
+        //     })
+        //     .then((timestamp) => {
+        //         console.log('Tokens revoked at: ', timestamp);
+        //     });
 
     } catch (err) {
         console.log("Errors:", err);

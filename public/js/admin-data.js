@@ -1,11 +1,11 @@
 $(function() {
 
-    const db = firebase.firestore();
-    // let userRoleCustomer = rolesRef.doc("Admin");
+
 
     let dataTable = $('#adminUserViewTable').DataTable({
         destroy: true,
         scrollX: true,
+        paging: true,
         searching: false,
 
     });
