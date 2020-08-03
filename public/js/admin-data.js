@@ -1,12 +1,9 @@
 $(function() {
 
-
-
     let dataTable = $('#adminUserViewTable').DataTable({
         destroy: true,
         scrollX: true,
-        paging: true,
-        searching: false,
+        searching: false
 
     });
     //hide some columns

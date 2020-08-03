@@ -5,7 +5,6 @@ $(function() {
         destroy: true,
         scrollX: true,
         searching: false,
-
     });
     //hide some columns
     dataTable.columns(1).visible(false);

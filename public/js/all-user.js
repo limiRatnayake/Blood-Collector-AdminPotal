@@ -1,11 +1,12 @@
 $(function() {
 
-    const db = firebase.firestore();
+
     let dataTable = $('#allUserViewTable').DataTable({
         destroy: true,
         scrollX: true,
-
+        searching: false
     });
+
     //hide some columns
     dataTable.columns(1).visible(false);
     dataTable.columns(8).visible(false);
