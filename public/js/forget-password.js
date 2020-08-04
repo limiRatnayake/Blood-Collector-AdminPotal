@@ -41,6 +41,7 @@ $(function() {
                     $("#formForgetPwd").trigger("reset");
 
                 }).catch(function(error) {
+
                     // An error happened.
                     Swal.fire(
                         'Request a Password Reset!',

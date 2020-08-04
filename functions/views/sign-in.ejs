@@ -11,7 +11,8 @@
 
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>SmartDonor Services</title>
+    <link rel="icon" href="../images/logo/logo.png" type="image/x-icon">
 
     <!-- Fontfaces CSS-->
     <link href="../css/font-face.css" rel="stylesheet" media="all">
@@ -33,10 +34,20 @@
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/style.css" rel="stylesheet" media="all">
 
 </head>
 
 <body>
+
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- <div class="spinner-border text-dark" id="preloader" role="status">
+        <span class="sr-only loader">Loading...</span>
+    </div> -->
+
     <div class="page-wrapper">
         <div class="page-content--bge5">
             <div class="container col-12 col-sm-12">
@@ -49,10 +60,22 @@
                             <form id="formSignIn">
                                 <div class="form-group">
                                     <label for="txtEmail">Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" id="txtEmail" placeholder="Email">
+                                    <input class="au-input au-input--full" type="email" name="txtEmail" id="txtEmail" placeholder="Email">
                                 </div>
-
                                 <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="txtPassword" id="txtPassword" class="form-control au-input au-input--full ">
+                                    <input type="checkbox" toggle="#txtPassword" class="togglePassword"> Show Password
+                                    <!-- <div class="md-form md-outline input-group">
+
+                                        <input type="password" name="txtPassword" id="txtPassword" class="form-control au-input au-input--full ">
+                                        <div class="input-group-addon">
+                                            <span toggle="#txtPassword" class="fa fa-fw fa-eye field-icon togglePassword"></span>
+                                        </div>
+                                    </div> -->
+
+                                </div>
+                                <!-- <div class="form-group">
                                     <label>Password</label>
                                     <div class="md-form md-outline input-group">
                                         <input type="password" name="pwd" id="txtPassword" class="form-control validate" required>
@@ -60,7 +83,7 @@
                                             <span toggle="#txtPassword" class="fa fa-fw fa-eye field-icon togglePassword"></span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- <div class="form-group">
                                     <label for="txtPassword">Password</label>
                                     <div class=" au-input au-input--full">
@@ -128,6 +151,7 @@
 
     <!-- Main JS-->
     <script src="../js/vendor-main.js "></script>
+    <script src="../js/script.js "></script>
     <script src="../js/sign-in.js "></script>
 
 
