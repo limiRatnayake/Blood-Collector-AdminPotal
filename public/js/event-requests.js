@@ -19,8 +19,8 @@ $(function() {
         querySnapshot.forEach(function(doc) {
             let data = doc.data();
 
-            // If userFName column is blank don't display the row(bcz it is campaign feild)
-            if (data.userFName == null) {
+            // If the category is campaign don't display data
+            if (data.category == "campaign") {
                 return false;
             }
 
