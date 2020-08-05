@@ -15,6 +15,9 @@ module.exports = async(req, res) => {
         const lastName = data.lastName;
         const mobileNo = data.mobileNo;
         const userRole = data.userRole;
+        const proPicUrl = data.proPicUrl;
+        const gender = data.gender;
+        const birthDate = data.birthDate;
 
         const userRecord = await firebaseAdmin.auth().createUser({
                 email: email,
@@ -54,8 +57,11 @@ module.exports = async(req, res) => {
                 email: email,
                 firstName: displayName,
                 lastName: lastName,
+                gender: gender,
                 mobileNo: mobileNo,
                 userRole: userRole,
+                proPicUrl: proPicUrl,
+                birthDate: birthDate
             });
 
         res.send({

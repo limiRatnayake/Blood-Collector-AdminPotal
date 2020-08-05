@@ -1,5 +1,14 @@
 $(function() {
 
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    var birthDate = new Date();
+    var dd = String(birthDate.getDate()).padStart(2, '0');
+    var mm = monthNames[birthDate.getMonth()]; //January is 0!
+    var yyyy = birthDate.getFullYear();
+
+
 
     let dataTable = $('#allUserViewTable').DataTable({
         destroy: true,
@@ -48,12 +57,16 @@ $(function() {
             userBloodGroup: {
                 required: "Please select an option from the list!",
             },
+            userGender: {
+                required: "Please select an option from the list!",
+            },
         }
     });
 
     $('#formAddUser').ready(function() {
         $(document).on("click", "#btnRegister", () => {
-
+            birthDate = yyyy + '-' + mm + '-' + dd;
+            console.log(birthDate)
             if ($("#formAddUser").valid()) {
                 console.log("press");
                 var auth = firebase.auth();
@@ -65,7 +78,10 @@ $(function() {
                 var userRole = $("#userRole").val();
                 var address = $("#txtaddress").val();
                 var bloodGroup = $("#userBloodGroup").val();
+                var gender = $("#userGender").val();
                 var mobileNo = $("#txtmobileNo").val();
+                var proPicUrl = "https://firebasestorage.googleapis.com/v0/b/final-year-project-a89ff.appspot.com/o/profile_picture%2Fblank_proPic.jpg?alt=media&token=b42aaeec-4118-4b8c-abe2-6636a347003e";
+                birthDate = yyyy + '-' + mm + '-' + dd;
 
                 let userData = {
                     address: address,
@@ -75,8 +91,11 @@ $(function() {
                     passsword: passsword,
                     firstName: fName,
                     lastName: lName,
+                    gender: gender,
                     mobileNo: mobileNo,
-                    userRole: userRole
+                    userRole: userRole,
+                    proPicUrl: proPicUrl,
+                    birthDate: birthDate
                 };
                 Swal.fire({
                     title: "Are you sure?",
