@@ -19,68 +19,79 @@ module.exports = async(req, res) => {
         const gender = data.gender;
         const birthDate = data.birthDate;
 
-        const userRecord = await firebaseAdmin.auth().createUser({
+        firebaseAdmin.auth().createUser({
                 email: email,
                 displayName: displayName
             })
-            // .then(function(userRecord) {
-            //     // See the UserRecord reference doc for the contents of userRecord.
-            //     console.log('Successfully created new user:', userRecord.uid);
-            //     return db
-            //         .collection("users")
-            //         .doc(userRecord.uid)
-            //         .set({
-            //             uid: userRecord.uid,
-            //             address: address,
-            //             bloodGroup: bloodGroup,
-            //             disabled: disabled,
-            //             email: email,
-            //             firstName: firstName,
-            //             lastName: lastName,
-            //             mobileNo: mobileNo,
-            //             userRole: userRole,
-            //         });
+            .then(function(userRecord) {
+                // See the UserRecord reference doc for the contents of userRecord.
+                console.log('Successfully created new user:', userRecord.uid);
+                db
+                    .collection("users")
+                    .doc(userRecord.uid)
+                    .set({
+                        uid: userRecord.uid,
+                        address: address,
+                        bloodGroup: bloodGroup,
+                        disabled: disabled,
+                        email: email,
+                        firstName: displayName,
+                        lastName: lastName,
+                        gender: gender,
+                        mobileNo: mobileNo,
+                        userRole: userRole,
+                        proPicUrl: proPicUrl,
+                        birthDate: birthDate
+                    });
 
-        // })
-        // .catch(function(error) {
-        //     console.log('Error creating new user:', error);
-        // });
+                res.send({
+                    code: 200,
+                    data: userRecord.uid,
+                });
 
-
-        await db.collection("users")
-            .doc(userRecord.uid)
-            .set({
-                uid: userRecord.uid,
-                address: address,
-                bloodGroup: bloodGroup,
-                disabled: disabled,
-                email: email,
-                firstName: displayName,
-                lastName: lastName,
-                gender: gender,
-                mobileNo: mobileNo,
-                userRole: userRole,
-                proPicUrl: proPicUrl,
-                birthDate: birthDate
+            })
+            .catch(function(error) {
+                console.log('Error creating new user:', error);
+                res.send({
+                    code: 400,
+                    data: error.errors,
+                });
             });
-
-        res.send({
-            code: 200,
-            data: userRecord.uid,
-        });
 
     } catch (err) {
         console.log("Errors:", err);
-        if (err) {
-            res.send({
-                code: 400,
-                errors: err.errors,
-            });
-        } else {
-            res.send({
-                code: 400,
-                errors: [err],
-            });
-        }
+        res.send({
+            code: 400,
+            errors: err.errors,
+        });
+        // if (err) {
+        //     res.send({
+        //         code: 400,
+        //         errors: err.errors,
+        //     });
+        // } else {
+        //     res.send({
+        //         code: 400,
+        //         errors: [err],
+        //     });
+        // }
     }
 };
+
+
+// await db.collection("users")
+//     .doc(userRecord.uid)
+//     .set({
+//         uid: userRecord.uid,
+//         address: address,
+//         bloodGroup: bloodGroup,
+//         disabled: disabled,
+//         email: email,
+//         firstName: displayName,
+//         lastName: lastName,
+//         gender: gender,
+//         mobileNo: mobileNo,
+//         userRole: userRole,
+//         proPicUrl: proPicUrl,
+//         birthDate: birthDate
+//     });
