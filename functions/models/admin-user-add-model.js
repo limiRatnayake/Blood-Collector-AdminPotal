@@ -9,7 +9,6 @@ module.exports = async(req, res) => {
         console.log(data)
         const email = data.email;
         const displayName = data.firstName;
-        const address = data.address;
         const bloodGroup = data.bloodGroup;
         const disabled = data.disabled;
         const lastName = data.lastName;
@@ -31,7 +30,6 @@ module.exports = async(req, res) => {
                     .doc(userRecord.uid)
                     .set({
                         uid: userRecord.uid,
-                        address: address,
                         bloodGroup: bloodGroup,
                         disabled: disabled,
                         email: email,
