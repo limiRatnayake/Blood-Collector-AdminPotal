@@ -15,7 +15,8 @@ $(function () {
    ];
    var birthDate = new Date();
    var dd = String(birthDate.getDate()).padStart(2, "0");
-   var mm = monthNames[birthDate.getMonth()]; //January is 0!
+   // var mm = monthNames[birthDate.getMonth()]; //January is 0!
+   var mm = String(birthDate.getMonth() + 1).padStart(2, "0"); //January is 0!
    var yyyy = birthDate.getFullYear();
 
    let dataTable = $("#allUserViewTable").DataTable({
