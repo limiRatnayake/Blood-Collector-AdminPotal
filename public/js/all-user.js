@@ -126,13 +126,21 @@ $(function () {
                      contentType: "application/json; charset=utf-8",
                      dataType: "json",
                      success: function (data) {
-                        console.log(data);
+                        console.log(data.code);
 
-                        Swal.fire(
-                           "User Created!",
-                           "User will get an password resend email",
-                           "success"
-                        );
+                        if (data.code != 200) {
+                           Swal.fire(
+                              "User Created!",
+                              "The user creating failed!",
+                              "error"
+                           );
+                        } else {
+                           Swal.fire(
+                              "User Created!",
+                              "User will get an password resend email",
+                              "success"
+                           );
+                        }
 
                         // auth.sendPasswordResetEmail(email).then(function () {
                         //    // Email sent.
