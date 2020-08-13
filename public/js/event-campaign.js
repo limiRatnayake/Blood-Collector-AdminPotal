@@ -9,7 +9,7 @@ $(function() {
     });
     //hide some columns
     campEventViewTable.columns(1).visible(false);
-    campEventViewTable.columns(13).visible(false);
+    // campEventViewTable.columns(13).visible(false);
 
 
     //querySnapshot catch the changes in the firebase
@@ -30,20 +30,19 @@ $(function() {
                     rowCount++,
                     data.docRef,
                     data.nameOftheOrganizer,
-                    data.pickUpDate,
+                    data.pickUpStartDate,
+                    data.pickUpEndDate,
                     data.startTime,
                     data.endTime,
                     data.orgernizerConatctNo,
                     data.placeName,
                     data.placeAddress,
-                    data.placeLat,
-                    data.placeLng,
                     data.description,
                     '<a data-fancybox="gallery" href="' +
                     data.imageUrl +
                     '"><img src="' +
                     data.imageUrl +
-                    '" height="42"></a>',
+                    '" height="42" width="100%"></a>',
                     data.approved,
                     data.rejectReason,
                     '<button type="button" class="btn btn-outline-success btn-sm btnApprove">Approve</button>' +

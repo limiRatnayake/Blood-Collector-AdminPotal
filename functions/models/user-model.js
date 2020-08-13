@@ -12,7 +12,7 @@ module.exports = async(req, res) => {
         console.log(disabled)
         var userRecord = await firebaseAdmin.auth().updateUser(data.uid, {
             disabled: disabled
-        });
+        })
         await db
             .collection("users")
             .doc(data.uid)
