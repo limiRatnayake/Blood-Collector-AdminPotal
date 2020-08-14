@@ -55,9 +55,19 @@ $(function() {
                         hospitalLongitude: hospitalLongitude
                     }).then(function(docRef) {
                         console.log("Document written with ID: ", docRef.id);
+                        Swal.fire(
+                            "Hospital Deatils Added!",
+                            "Your file has been uploaded.",
+                            "success"
+                        );
                         $("#formAddBloodBank").trigger("reset");
                     })
                     .catch(function(error) {
+                        Swal.fire(
+                            "Hospital Deatils Added!",
+                            "Error occured: " + error,
+                            "success"
+                        );
                         console.error("Error adding document: ", error);
                     });
             }

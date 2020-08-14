@@ -11,6 +11,7 @@ module.exports = async(req, res) => {
         const displayName = data.firstName;
         const bloodGroup = data.bloodGroup;
         const disabled = data.disabled;
+        const address = data.address;
         const lastName = data.lastName;
         const mobileNo = data.mobileNo;
         const userRole = data.userRole;
@@ -33,6 +34,7 @@ module.exports = async(req, res) => {
                         bloodGroup: bloodGroup,
                         disabled: disabled,
                         email: email,
+                        address: address,
                         firstName: displayName,
                         lastName: lastName,
                         gender: gender,

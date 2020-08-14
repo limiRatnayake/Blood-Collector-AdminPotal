@@ -94,6 +94,7 @@ $(function() {
                     bloodGroup: bloodGroup,
                     disabled: false,
                     email: email,
+                    address: "",
                     passsword: passsword,
                     firstName: fName,
                     lastName: lName,

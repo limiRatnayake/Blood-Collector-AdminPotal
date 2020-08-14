@@ -8,9 +8,9 @@ $(function() {
             updateAddress: {
                 required: true,
             },
-            updateAddress: {
-                required: true,
-            },
+            // updateAddress: {
+            //     required: true,
+            // },
             updateMobileNo: {
                 required: true,
                 minlength: 10,
@@ -20,7 +20,7 @@ $(function() {
         messages: {
             updateFName: " Enter First Name",
             updateLName: " Enter Last Name",
-            updateAddress: " Enter Address",
+            // updateAddress: " Enter Address",
             updateMobileNo: " Enter your Phone number",
             userBloodGroupUpdate: {
                 required: "Please select an option from the list!",
@@ -86,7 +86,7 @@ $(function() {
                             document.getElementById('updateFName').value = userData.firstName;
                             document.getElementById('updateLName').value = userData.lastName;
                             document.getElementById('updateMobileNo').value = userData.mobileNo;
-                            document.getElementById('updateAddress').value = userData.address;
+                            // document.getElementById('updateAddress').value = userData.address;
                             document.getElementById('userBloodGroupUpdate').value = userData.bloodGroup;
                         });
                     },
@@ -110,7 +110,7 @@ $(function() {
                     console.log("press")
                     var fName = $("#updateFName").val();
                     var lName = $("#updateLName").val();
-                    var address = $("#updateAddress").val();
+                    // var address = $("#updateAddress").val();
                     var bloodGroup = $("#userBloodGroupUpdate").val();
                     var mobileNo = $("#updateMobileNo").val();;
 
@@ -131,7 +131,6 @@ $(function() {
                                     .update({
                                         firstName: fName,
                                         lastName: lName,
-                                        address: address,
                                         bloodGroup: bloodGroup,
                                         mobileNo: mobileNo,
                                     });
@@ -173,6 +172,7 @@ $(function() {
                                     if (newEmailAdd != user.email) {
                                         user.updateEmail(newEmailAdd).then(function() {
                                             // Update successful.
+
                                             db
                                                 .collection("users")
                                                 .doc(user.uid)
@@ -180,11 +180,17 @@ $(function() {
                                                     email: newEmailAdd,
 
                                                 });
-                                            Toast.fire({
-                                                icon: 'success',
-                                                title: 'Email update successfully!',
+                                            user.sendEmailVerification()
+                                                // Toast.fire({
+                                                //     icon: 'success',
+                                                //     title: 'Email update successfully!',
 
-                                            })
+                                            // })
+                                            Swal.fire(
+                                                "Update User Email Address!",
+                                                "Please Verify Your Email and signin again",
+                                                "warning"
+                                            );
                                             $("#formUpdateUserEmail").trigger("reset");
 
                                         }).catch(function(error) {

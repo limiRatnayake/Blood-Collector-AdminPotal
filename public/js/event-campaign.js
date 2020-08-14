@@ -69,8 +69,8 @@ $(function() {
 
         var data = campEventViewTable.row($(this).parents('tr')).data();
         var docRef = data[1];
-        var approved = data[13];
-        var rejectedReason = data[14];
+        var approved = data[12];
+        var rejectedReason = data[13];
 
         console.log(approved)
         console.log(rejectedReason)
@@ -122,8 +122,8 @@ $(function() {
         console.log("press");
         var data = campEventViewTable.row($(this).parents('tr')).data();
         var docRef = data[1];
-        var approved = data[13];
-        var rejectedReason = data[14];
+        var approved = data[12];
+        var rejectedReason = data[13];
 
         if (rejectedReason == 'None') {
             Swal.fire({
