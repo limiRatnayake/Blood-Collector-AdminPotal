@@ -189,8 +189,22 @@ $(function() {
                                             Swal.fire(
                                                 "Update User Email Address!",
                                                 "Please Verify Your Email and signin again",
-                                                "warning"
-                                            );
+                                                "success"
+                                            ).then(result => {
+                                                firebase
+                                                    .auth()
+                                                    .signOut()
+                                                    .then((result) => {
+                                                        window.location.href = BASE_URL;
+                                                    })
+                                                    .catch(function(error) {
+                                                        // Handle Errors here.
+                                                        var errorCode = error.code;
+                                                        var errorMessage = error.message;
+
+                                                        window.alert("Error:" + errorMessage);
+                                                    });
+                                            });
                                             $("#formUpdateUserEmail").trigger("reset");
 
                                         }).catch(function(error) {
