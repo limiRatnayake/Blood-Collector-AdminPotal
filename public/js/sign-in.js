@@ -92,19 +92,11 @@ $(function () {
 
    // Password visibility
    $(".togglePassword").on("click", function () {
-      // $(this).toggleClass('fa-eye fa-eye-slash');
-      // let input = $($(this).attr('toggle'));
-      // if (input.attr('type') == 'password') {
-      //     input.attr('type', 'text');
-      // } else {
-      //     input.attr('type', 'password');
-      // }
-
-      var x = document.getElementById("txtPassword");
-      if (x.type === "password") {
-         x.type = "text";
+      var getPassword = document.getElementById("txtPassword");
+      if (getPassword.type === "password") {
+         getPassword.type = "text";
       } else {
-         x.type = "password";
+         getPassword.type = "password";
       }
    });
 });

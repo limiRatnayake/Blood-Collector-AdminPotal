@@ -8,47 +8,6 @@ $(function () {
    dataTable.columns(1).visible(false);
    dataTable.columns(8).visible(false);
 
-   //    $("#formAddUser").validate({
-   //       rules: {
-   //          txtFName: "required",
-   //          txtLName: "required",
-   //          txtEmail: {
-   //             required: true,
-   //             email: true,
-   //          },
-   //          txtaddress: {
-   //             required: true,
-   //          },
-   //          txtmobileNo: {
-   //             required: true,
-   //             minlength: 10,
-   //             maxlength: 10,
-   //          },
-   //          password: {
-   //             required: true,
-   //             minlength: 6,
-   //          },
-   //          confirmPassword: {
-   //             equalTo: "#password",
-   //          },
-   //       },
-   //       messages: {
-   //          txtFName: " Enter First Name",
-   //          txtLName: " Enter Last Name",
-   //          txtEmail: " Enter Valid Email Address!",
-   //          txtaddress: " Enter Address",
-   //          txtmobileNo: " Enter your Phone number",
-   //          password: " Enter Password",
-   //          confirmPassword: " Enter Confirm Password Same as Password",
-   //          userRole: {
-   //             required: "Please select an option from the list!",
-   //          },
-   //          userBloodGroup: {
-   //             required: "Please select an option from the list!",
-   //          },
-   //       },
-   //    });
-
    //call the function that that add data to the rows
    dataAdd();
 
@@ -143,6 +102,7 @@ $(function () {
       });
    });
 
+   //selection dropdown
    $("#adminSelect").change(function () {
       var option = $(this).find("option:selected");
       window.location.href = option.data("url");
