@@ -1,107 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+   <head>
+      <%- include('../layouts/header-layout');%>
+   </head>
 
-<head>
-    <%- include('../layouts/header-layout');%>
-</head>
-
-<body>
-    <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
+   <body>
+      <div class="page-wrapper">
+         <!-- HEADER MOBILE-->
+         <header class="header-mobile d-block d-lg-none">
             <%- include('../layouts/nav-mobile-layout');%>
-        </header>
-        <!-- END HEADER MOBILE-->
+         </header>
+         <!-- END HEADER MOBILE-->
 
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-
+         <!-- MENU SIDEBAR-->
+         <aside class="menu-sidebar d-none d-lg-block">
             <%- include('../layouts/nav-sidebar-layout');%>
-        </aside>
-        <!-- END MENU SIDEBAR-->
+         </aside>
+         <!-- END MENU SIDEBAR-->
 
-        <!-- PAGE CONTAINER-->
-        <div class="page-container">
+         <!-- PAGE CONTAINER-->
+         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                    <%- include('../layouts/header-desktop-layout');%>
-                </div>
+               <div class="section__content section__content--p30">
+                  <%- include('../layouts/header-desktop-layout');%>
+               </div>
             </header>
             <!-- END HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
             <div class="main-content">
-                <div class="container section__content--p30">
-                    <div class=" m-b-30">
-                        <h2>Cluster Centers & Affiliated Blood Banks</h2>
-                    </div>
+               <div class="container section__content--p30">
+                  <div class="m-b-30">
+                     <h2>Cluster Centers & Affiliated Blood Banks</h2>
+                  </div>
 
-                    <!--Add a post-->
-                    <!-- Trigger the modal with a button -->
-                    <div class="row  m-b-30">
-                        <div class="col-12">
-                            <div class=" float-right ">
-                                <button type="button" class="btn  btn-success btn-sm" id="addClusterBankBtn"><i class="zmdi zmdi-plus"></i>Add Cluster Center</button>
-                            </div>
-
-                            <!-- Modal -->
-                            <div class="modal " id="bloodBankModal" role="dialog">
-                                <div class="modal-dialog modal-lg">
-                                    <!-- Modal content-->
-                                    <div class="modal-content ">
-                                        <div class="modal-header" style="padding:35px 50px;">
-                                            <div>
-                                                <h4>Add Cluster Centers & Affiliated Blood Banks</h4>
-                                            </div>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                                        </div>
-                                        <div class="modal-body" style="padding:25px 45px;">
-                                            <form role="form" id="formAddBloodBank">
-                                                <div class="form-group">
-                                                    <label for="bloodBankName">Name of the Cluster Centers & Affiliated Blood Banks </label>
-                                                    <input type="text" class="form-control" id="txtBloodBankName" name="txtBloodBankName" placeholder="eg: IDH-Angoda">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bloodBankAddress">Address of the Cluster Centers & Affiliated Blood Banks</label>
-                                                    <input type="text" class="form-control" id="txtBloodBankAddress" name="txtBloodBankAddress" placeholder="eg:- IDH, Mandavila Road, Kotikawatta, Sri Lanka">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="description">Add a description</label>
-                                                    <input type="text" class="form-control" id="txtDescription" name="txtDescription" placeholder="Description">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="hospitalLatitude">Latitude</label>
-                                                    <input type="text" class="form-control" id="hospitalLatitude" name="hospitalLatitude" placeholder="eg: 6.9225° N">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="hospitalLongitude">Longitude</label>
-                                                    <input type="text" class="form-control" id="hospitalLongitude" name="hospitalLongitude" placeholder="eg: 79.9182° E">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger btn-default " data-dismiss="modal" id="btnClear"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                                    <button type="button" class="btn btn-success btn-default" id="btnSaveDetails">Save Details</button>
-                                                    <!--stop the retrograding by changing the type submit to button-->
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                  <!--Add a post-->
+                  <!-- Trigger the modal with a button -->
+                  <div class="row m-b-30">
+                     <div class="col-12">
+                        <div class="float-right">
+                           <button
+                              type="button"
+                              class="btn btn-success btn-sm"
+                              id="addClusterBankBtn"
+                           >
+                              <i class="zmdi zmdi-plus"></i>Add Cluster Center
+                           </button>
                         </div>
-                    </div>
-                </div>
-                <div class="container section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12 ">
-                                <!-- HOSPITAL DATA-->
-                                <div class="user-data m-b-30">
-                                    <h3 class="title-3 m-b-30">
-                                        <i class="zmdi zmdi-account-calendar"></i>Hospital Data</h3>
-                                    <!-- <div class="rs-select2--dark rs-select2--md m-r-10 m-b-30 rs-select2--border">
+
+                        <!-- Modal -->
+                        <div class="modal" id="bloodBankModal" role="dialog">
+                           <div class="modal-dialog modal-lg">
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                 <div
+                                    class="modal-header"
+                                    style="padding: 35px 50px"
+                                 >
+                                    <div>
+                                       <h4>
+                                          Add Cluster Centers & Affiliated Blood
+                                          Banks
+                                       </h4>
+                                    </div>
+                                    <button
+                                       type="button"
+                                       class="close"
+                                       data-dismiss="modal"
+                                    >
+                                       &times;
+                                    </button>
+                                 </div>
+                                 <div
+                                    class="modal-body"
+                                    style="padding: 25px 45px"
+                                 >
+                                    <form role="form" id="formAddBloodBank">
+                                       <div class="form-group">
+                                          <label for="bloodBankName"
+                                             >Name of the Cluster Centers &
+                                             Affiliated Blood Banks
+                                          </label>
+                                          <input
+                                             type="text"
+                                             class="form-control"
+                                             id="txtBloodBankName"
+                                             name="txtBloodBankName"
+                                             placeholder="eg: IDH-Angoda"
+                                          />
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="bloodBankAddress"
+                                             >Address of the Cluster Centers &
+                                             Affiliated Blood Banks</label
+                                          >
+                                          <input
+                                             type="text"
+                                             class="form-control"
+                                             id="txtBloodBankAddress"
+                                             name="txtBloodBankAddress"
+                                             placeholder="eg:- IDH, Mandavila Road, Kotikawatta, Sri Lanka"
+                                          />
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="description"
+                                             >Add a description</label
+                                          >
+                                          <input
+                                             type="text"
+                                             class="form-control"
+                                             id="txtDescription"
+                                             name="txtDescription"
+                                             placeholder="Description"
+                                          />
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="hospitalLatitude"
+                                             >Latitude</label
+                                          >
+                                          <input
+                                             type="text"
+                                             class="form-control"
+                                             id="hospitalLatitude"
+                                             name="hospitalLatitude"
+                                             placeholder="eg: 6.9225"
+                                          />
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="hospitalLongitude"
+                                             >Longitude</label
+                                          >
+                                          <input
+                                             type="text"
+                                             class="form-control"
+                                             id="hospitalLongitude"
+                                             name="hospitalLongitude"
+                                             placeholder="eg: 79.9182"
+                                          />
+                                       </div>
+                                       <div class="modal-footer">
+                                          <button
+                                             type="button"
+                                             class="btn btn-danger btn-default"
+                                             data-dismiss="modal"
+                                             id="btnClear"
+                                          >
+                                             <span
+                                                class="glyphicon glyphicon-remove"
+                                             ></span>
+                                             Cancel
+                                          </button>
+                                          <button
+                                             type="button"
+                                             class="btn btn-success btn-default"
+                                             id="btnSaveDetails"
+                                          >
+                                             Save Details
+                                          </button>
+                                          <!--stop the retrograding by changing the type submit to button-->
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="container section__content--p30">
+                  <div class="container-fluid">
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <!-- HOSPITAL DATA-->
+                           <div class="user-data m-b-30">
+                              <h3 class="title-3 m-b-30">
+                                 <i class="zmdi zmdi-account-calendar"></i
+                                 >Hospital Data
+                              </h3>
+                              <!-- <div class="rs-select2--dark rs-select2--md m-r-10 m-b-30 rs-select2--border">
                                         <select class="js-select2" name="property">
                                                 <option selected="selected">Select districts</option>
                                                 <option value="Admin">Western</option>
@@ -110,39 +187,37 @@
                                             </select>
                                         <div class="dropDownSelect2"></div>
                                     </div> -->
-                                    <div class="table-responsive table--no-card m-b-40">
-                                        <table class="table table-borderless table-striped table-earning " id="hospitalViewTable" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <td>No</td>
-                                                    <td>Hospital Name</td>
-                                                    <td>Hospital Address</td>
-                                                    <td>Description</td>
-                                                    <td>Latitude</td>
-                                                    <td>Longitude</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-
-                                        </table>
-                                    </div>
-
-                                </div>
-                                <!-- END HOSPITAL DATA-->
-                            </div>
-
+                              <div
+                                 class="table-responsive table--no-card m-b-40"
+                              >
+                                 <table
+                                    class="table table-borderless table-striped table-earning"
+                                    id="hospitalViewTable"
+                                    style="width: 100%"
+                                 >
+                                    <thead>
+                                       <tr>
+                                          <td>No</td>
+                                          <td>Hospital Name</td>
+                                          <td>Hospital Address</td>
+                                          <td>Description</td>
+                                          <td>Latitude</td>
+                                          <td>Longitude</td>
+                                       </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                 </table>
+                              </div>
+                           </div>
+                           <!-- END HOSPITAL DATA-->
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
+         </div>
+      </div>
 
-    </div>
-
-
-
-    <%-include('../layouts/footer-layout');-%>
-
-</body>
-
+      <%-include('../layouts/footer-layout');-%>
+   </body>
 </html>
