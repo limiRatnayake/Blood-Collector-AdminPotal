@@ -31,6 +31,7 @@ exports.app = functions.https.onRequest(app);
 //push notification
 var newData;
 var tokens = [];
+let userId;
 exports.messageTrigger = functions.firestore
    .document("notifications/{notificationId}")
    .onCreate(async (snapshot, context) => {
@@ -50,10 +51,8 @@ exports.messageTrigger = functions.firestore
                //Invited User not found in Database
                console.log("Invited User not registered");
             } else {
-               let userId;
-
                usersQuerySnapshot.forEach(async (userSnapshot) => {
-                  // userId = userSnapshot.id;
+                  userId = userSnapshot.id;
                   const userDocRef = userSnapshot.ref;
 
                   const tokensQuerySnapshot = await userDocRef
@@ -82,8 +81,18 @@ exports.messageTrigger = functions.firestore
          const response = firebaseAdmin
             .messaging()
             .sendToDevice(tokens, payLoad);
+         firebaseAdmin
+            .firestore()
+            .collection("users")
+            .doc(userId)
+            .collection("user_notification")
+            .add({
+               notifyBy: notificationData.uid,
+               notificationId: notificationData.notificationId,
+               message: notificationData.message,
+            });
          console.log("Notification send successfully");
       } catch (error) {
-         console.log("Error sending notification");
+         console.log("hey,Error sending notification");
       }
    });
