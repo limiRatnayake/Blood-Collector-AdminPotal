@@ -67,8 +67,8 @@ exports.messageTrigger = functions.firestore
          });
       var payLoad = {
          notification: {
-            title: "Push title",
-            body: "Push body",
+            title: "Request to Donate Blood",
+            body: "Click to see more",
             sound: "default",
          },
          data: {
