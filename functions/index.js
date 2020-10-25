@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const functions = require("firebase-functions");
 const firebaseAdmin = require("./config/firebase-admin-config");
+const db = firebaseAdmin.firestore();
 // Routes
 const routes = require("./routes/index");
 //Express
@@ -30,50 +31,69 @@ exports.app = functions.https.onRequest(app);
 
 //push notification
 var newData;
-var tokens = [];
+var tokens;
 let userId;
+
 exports.messageTrigger = functions.firestore
    .document("notifications/{notificationId}")
    .onCreate(async (snapshot, context) => {
       const notificationData = snapshot.data();
-      if (snapshot.isEmpty) {
-         console.log("No devices");
-         return;
-      }
-      // newData = snapshot.data();
-      firebaseAdmin
-         .firestore()
+
+      // db.collection("users")
+      //    .where("bloodGroup", "==", notificationData.bloodGroup)
+      //    .get()
+      //    .then(async (usersQuerySnapshot) => {
+      //       if (usersQuerySnapshot.empty) {
+      //          //Invited User not found in Database
+      //          console.log("Invited User not registered");
+      //       } else {
+      //          usersQuerySnapshot.forEach(async (userSnapshot) => {
+      //             userId = userSnapshot.id;
+      //             const userDocRef = userSnapshot.ref;
+
+      //             const tokensQuerySnapshot = await userDocRef
+      //                .collection("deviceTokens")
+      //                .get();
+
+      //             for (var tokenData of tokensQuerySnapshot.docs) {
+      //                tokens.push(tokenData.data().token);
+      //             }
+      //          });
+      //       }
+      //    });
+
+      const userRef = await db
          .collection("users")
          .where("bloodGroup", "==", notificationData.bloodGroup)
-         .get()
-         .then(async (usersQuerySnapshot) => {
-            if (usersQuerySnapshot.empty) {
-               //Invited User not found in Database
-               console.log("Invited User not registered");
-            } else {
-               usersQuerySnapshot.forEach(async (userSnapshot) => {
-                  userId = userSnapshot.id;
-                  const userDocRef = userSnapshot.ref;
+         .get();
 
-                  const tokensQuerySnapshot = await userDocRef
-                     .collection("deviceTokens")
-                     .get();
+      userRef.forEach(async (userSnapshot) => {
+         userId = userSnapshot.id;
+      });
+      const tokensQuerySnapshot = await db
+         .collection("users")
+         .doc(userId)
+         .collection("deviceTokens")
+         .get();
 
-                  for (var tokenData of tokensQuerySnapshot.docs) {
-                     tokens.push(tokenData.data().token);
-                  }
-               });
-            }
-         });
+      for (var tokenData of tokensQuerySnapshot.docs) {
+         tokens = [];
+         tokens.push(tokenData.data().token);
+      }
+
       var payLoad = {
          notification: {
             title: "Request to Donate Blood",
             body: "Click to see more",
             sound: "default",
+            click_action: "FLUTTER_NOTIFICATION_CLICK",
          },
+
          data: {
             click_action: "FLUTTER_NOTIFICATION_CLICK",
             message: notificationData.message,
+            title: "Your title",
+            body: "Your body",
          },
       };
       //send data to device
