@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const functions = require("firebase-functions");
 const firebaseAdmin = require("./config/firebase-admin-config");
 const db = firebaseAdmin.firestore();
+const FieldValue = require("./config/firebase-admin-config").firestore
+   .FieldValue;
 // Routes
 const routes = require("./routes/index");
 //Express
@@ -38,29 +40,6 @@ exports.messageTrigger = functions.firestore
    .document("notifications/{notificationId}")
    .onCreate(async (snapshot, context) => {
       const notificationData = snapshot.data();
-
-      // db.collection("users")
-      //    .where("bloodGroup", "==", notificationData.bloodGroup)
-      //    .get()
-      //    .then(async (usersQuerySnapshot) => {
-      //       if (usersQuerySnapshot.empty) {
-      //          //Invited User not found in Database
-      //          console.log("Invited User not registered");
-      //       } else {
-      //          usersQuerySnapshot.forEach(async (userSnapshot) => {
-      //             userId = userSnapshot.id;
-      //             const userDocRef = userSnapshot.ref;
-
-      //             const tokensQuerySnapshot = await userDocRef
-      //                .collection("deviceTokens")
-      //                .get();
-
-      //             for (var tokenData of tokensQuerySnapshot.docs) {
-      //                tokens.push(tokenData.data().token);
-      //             }
-      //          });
-      //       }
-      //    });
 
       const userRef = await db
          .collection("users")
@@ -101,9 +80,7 @@ exports.messageTrigger = functions.firestore
          const response = firebaseAdmin
             .messaging()
             .sendToDevice(tokens, payLoad);
-         firebaseAdmin
-            .firestore()
-            .collection("users")
+         db.collection("users")
             .doc(userId)
             .collection("user_notification")
             .add({
@@ -111,8 +88,18 @@ exports.messageTrigger = functions.firestore
                notificationId: notificationData.notificationId,
                message: notificationData.message,
             });
+
+         var userNotificationRef = db.collection("users").doc(userId);
+         // userNotificationRef.update(
+         //    "notificationCount",
+         //    FieldValue.increment(1)
+         // );
+         userNotificationRef.update({
+            notificationCount: FieldValue.increment(1),
+         });
+
          console.log("Notification send successfully");
       } catch (error) {
-         console.log("hey,Error sending notification");
+         console.log(error);
       }
    });
