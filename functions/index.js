@@ -80,15 +80,20 @@ exports.messageTrigger = functions.firestore
          const response = firebaseAdmin
             .messaging()
             .sendToDevice(tokens, payLoad);
-         db.collection("users")
+         var userNotifyRef = db
+            .collection("users")
             .doc(userId)
             .collection("user_notification")
-            .add({
-               userNotifyId: doc.id,
-               notifyBy: notificationData.uid,
-               notificationId: notificationData.notificationId,
-               message: notificationData.message,
-            });
+            .doc();
+         userNotifyRef.set({
+            notifyId: userNotifyRef.id,
+            docRef: notificationData.docRef,
+            notifyBy: notificationData.uid,
+            notificationId: notificationData.notificationId,
+            message: notificationData.message,
+            hospitalName: notificationData.hospitalName,
+            createdAt: Date(),
+         });
 
          var userNotificationRef = db.collection("users").doc(userId);
          // userNotificationRef.update(

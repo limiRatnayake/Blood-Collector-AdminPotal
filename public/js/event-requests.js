@@ -105,20 +105,14 @@ $(function () {
                //       createdAt: today,
                //       closeOn: tomorrow,
                //    });
-               const newCityRef = db.collection("notifications").doc();
+               const notificationRef = db.collection("notifications").doc();
                if (notifyState == true) {
-                  newCityRef.set({
-                     notificationId: newCityRef.id,
+                  notificationRef.set({
+                     notificationId: notificationRef.id,
                      uid: uid,
                      docRef: docRef,
-                     message:
-                        "Requesting" +
-                        " " +
-                        bloodGroup +
-                        " " +
-                        "in" +
-                        " " +
-                        hospitalName,
+                     message: "Requesting" + " " + bloodGroup,
+                     hospitalName: hospitalName,
                      bloodGroup: bloodGroup,
                      createdAt: today,
                      closeOn: tomorrow,
