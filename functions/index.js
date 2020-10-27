@@ -84,6 +84,7 @@ exports.messageTrigger = functions.firestore
             .doc(userId)
             .collection("user_notification")
             .add({
+               userNotifyId: doc.id,
                notifyBy: notificationData.uid,
                notificationId: notificationData.notificationId,
                message: notificationData.message,
