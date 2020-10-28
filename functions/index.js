@@ -35,6 +35,12 @@ exports.app = functions.https.onRequest(app);
 var newData;
 var tokens;
 let userId;
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, "0");
+var mm = String(today.getMonth()); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + " " + dd + " " + yyyy;
 
 exports.messageTrigger = functions.firestore
    .document("notifications/{notificationId}")
@@ -92,7 +98,7 @@ exports.messageTrigger = functions.firestore
             notificationId: notificationData.notificationId,
             message: notificationData.message,
             hospitalName: notificationData.hospitalName,
-            createdAt: Date(),
+            createdOn: today,
          });
 
          var userNotificationRef = db.collection("users").doc(userId);
