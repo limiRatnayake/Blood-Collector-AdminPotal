@@ -111,7 +111,11 @@ $(function () {
                      notificationId: notificationRef.id,
                      uid: uid,
                      docRef: docRef,
-                     message: "Requesting" + " " + bloodGroup,
+                     message:
+                        "Your blood type" +
+                        " " +
+                        bloodGroup +
+                        "  is urgently needed",
                      hospitalName: hospitalName,
                      bloodGroup: bloodGroup,
                      createdAt: today,

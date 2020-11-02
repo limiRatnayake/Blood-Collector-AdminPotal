@@ -43,6 +43,7 @@ exports.messageTrigger = functions.firestore
 
       const userRef = await db
          .collection("users")
+
          .where("bloodGroup", "==", notificationData.bloodGroup)
          .get();
 
@@ -96,9 +97,15 @@ exports.messageTrigger = functions.firestore
          });
 
          var userNotificationRef = db.collection("users").doc(userId);
+         var eventRef = db.collection("events").doc(notificationData.docRef);
 
+         //add a count when a user get new notification
          userNotificationRef.update({
             notificationCount: FieldValue.increment(1),
+         });
+         //get the total notification sent
+         eventRef.update({
+            notifyCount: userRef.size,
          });
 
          console.log("Notification send successfully");
