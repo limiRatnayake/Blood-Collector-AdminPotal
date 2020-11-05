@@ -34,7 +34,7 @@ $(function () {
                data.bloodGroup,
                data.replacementAvailability,
                data.unitsOfBlood,
-               data.requestClose,
+               data.requestClose.toDate(),
                data.hospitalName,
                data.hospitalAddress,
                data.hospitalLat,

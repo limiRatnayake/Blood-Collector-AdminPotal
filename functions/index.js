@@ -43,13 +43,13 @@ exports.messageTrigger = functions.firestore
 
       const userRef = await db
          .collection("users")
-
          .where("bloodGroup", "==", notificationData.bloodGroup)
          .get();
 
       userRef.forEach(async (userSnapshot) => {
          userId = userSnapshot.id;
       });
+      console.log(userId);
       const tokensQuerySnapshot = await db
          .collection("users")
          .doc(userId)
@@ -66,7 +66,6 @@ exports.messageTrigger = functions.firestore
             title: "Request to Donate Blood",
             body: "Click to see more",
             sound: "default",
-            click_action: "FLUTTER_NOTIFICATION_CLICK",
          },
 
          data: {
@@ -81,11 +80,12 @@ exports.messageTrigger = functions.firestore
          const response = firebaseAdmin
             .messaging()
             .sendToDevice(tokens, payLoad);
-         var userNotifyRef = db
-            .collection("users")
+
+         db.collection("users")
             .doc(userId)
             .collection("user_notification")
             .doc();
+
          userNotifyRef.set({
             notifyId: userNotifyRef.id,
             docRef: notificationData.docRef,
@@ -93,7 +93,6 @@ exports.messageTrigger = functions.firestore
             notificationId: notificationData.notificationId,
             message: notificationData.message,
             hospitalName: notificationData.hospitalName,
-            createdOn: Date(),
          });
 
          var userNotificationRef = db.collection("users").doc(userId);
