@@ -14,6 +14,7 @@ $(function () {
    dataTable.columns(1).visible(false);
 
    $("#formAddBloodBank").validate({
+      errorClass: "errors",
       rules: {
          txtBloodBankName: "required",
          txtBloodBankAddress: "required",
@@ -29,6 +30,7 @@ $(function () {
       },
    });
    $("#formEditBloodBank").validate({
+      errorClass: "errors",
       rules: {
          editTxtBloodBankName: "required",
          editTxtBloodBankAddress: "required",

@@ -1,5 +1,6 @@
 $(function () {
    $("#formUpdateUserInfo").validate({
+      errorClass: "errors",
       rules: {
          updateFName: "required",
          updateLName: "required",
@@ -27,6 +28,7 @@ $(function () {
    });
 
    $("#formUpdateUserEmail").validate({
+      errorClass: "errors",
       rules: {
          newEmailAdd: {
             required: true,
@@ -48,6 +50,7 @@ $(function () {
    });
 
    $("#formUpdateUserPwd").validate({
+      errorClass: "errors",
       rules: {
          CurrentPassword: {
             required: true,

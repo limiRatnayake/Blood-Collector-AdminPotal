@@ -58,6 +58,7 @@ $(function () {
             ageLabel.push(ageArray[i].label);
             ageValue.push(ageArray[i].value);
          }
+
          var chart = new Chart(ctx, {
             // The type of chart we want to create
             type: "horizontalBar",

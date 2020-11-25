@@ -30,6 +30,7 @@ $(function () {
    dataTable.columns(8).visible(false);
 
    $("#formAddUser").validate({
+      errorClass: "errors",
       rules: {
          txtFName: "required",
          txtLName: "required",

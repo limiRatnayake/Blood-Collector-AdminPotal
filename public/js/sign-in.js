@@ -1,5 +1,6 @@
 $(function () {
    $("#formSignIn").validate({
+      errorClass: "errors",
       rules: {
          txtEmail: {
             required: true,
@@ -10,6 +11,7 @@ $(function () {
             minlength: 6,
          },
       },
+
       messages: {
          txtEmail: "Enter Valid Email Address!",
          txtPassword: "Enter Password",
