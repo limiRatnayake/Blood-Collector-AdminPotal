@@ -34,7 +34,6 @@ exports.app = functions.https.onRequest(app);
 //push notification
 var newData;
 var tokens;
-// var userId;
 
 exports.messageTrigger = functions.firestore
    .document("notifications/{notificationId}")
@@ -57,6 +56,7 @@ exports.messageTrigger = functions.firestore
             .doc(userId)
             .collection("deviceTokens")
             .get();
+
          //(for/of )loops through the values of an iterable object
          for (var tokenData of tokensQuerySnapshot.docs) {
             tokens = [];
@@ -120,6 +120,101 @@ exports.messageTrigger = functions.firestore
       //    tokens.push(tokenData.data().token);
       // }
    });
+
+exports.sendThankYouMessage = functions.firestore
+   .document("events/{docRef}")
+   .onUpdate(async (snapshot) => {
+      /*onUpdate has two properties, before and after
+      DataSnapshot objects describe the contents of the database before and after the change that triggered the function.
+       */
+      const beforeSubmitListStatus = snapshot.before
+         ? snapshot.before.get("submitListStatus")
+         : "";
+      const afterSubmitListStatus = snapshot.after
+         ? snapshot.after.get("submitListStatus")
+         : "";
+      const eventDetail = snapshot.after.data(); //DataSnapshot after the change
+      if (
+         afterSubmitListStatus == "submitted" &&
+         beforeSubmitListStatus != "submitted"
+      ) {
+         const participantRef = await db
+            .collection("participants")
+            .where("participatedStatus", "==", "Donated")
+            .get();
+         let participantsList = [];
+         participantRef.forEach(async (participantSnapshot) => {
+            participantsList.push(participantSnapshot.data().uid);
+         });
+         console.log(participantsList);
+
+         for (var userId of participantsList) {
+            const tokensQuerySnapshot = await db
+               .collection("users")
+               .doc(userId)
+               .collection("deviceTokens")
+               .get();
+
+            for (var tokenData of tokensQuerySnapshot.docs) {
+               console.log(tokenData);
+               tokens = [];
+               tokens.push(tokenData.data().token);
+            }
+
+            var payLoad = {
+               notification: {
+                  title: "You are a Life Saver",
+                  body: "We are grateful for your blood donation. Thank You!",
+                  sound: "default",
+               },
+
+               data: {
+                  click_action: "FLUTTER_NOTIFICATION_CLICK",
+                  message: "Thank You",
+                  title: "Your title",
+                  body: "Your body",
+               },
+            };
+
+            //send data to device
+            try {
+               const response = firebaseAdmin
+                  .messaging()
+                  .sendToDevice(tokens, payLoad);
+
+               var userNotificationRef = db.collection("users").doc(userId);
+
+               var userNotifyRef = db
+                  .collection("users")
+                  .doc(userId)
+                  .collection("user_notification")
+                  .doc();
+
+               userNotifyRef.set({
+                  notifyId: userNotifyRef.id,
+                  docRef: eventDetail.docRef,
+                  // participantId: eventDetail.participantId,
+                  notifyBy: eventDetail.uid,
+                  message:
+                     "We are grateful for your blood donation. Thank You!",
+                  organizersName: eventDetail.nameOftheOrganizer,
+                  eventHeldOn: eventDetail.pickUpStartDate,
+                  hospitalName: eventDetail.hospitalName,
+               });
+
+               //add a count when a user get new notification
+               userNotificationRef.update({
+                  notificationCount: FieldValue.increment(1),
+               });
+
+               console.log("Thank you message send successfully");
+            } catch (error) {
+               console.log(error);
+            }
+         }
+      }
+   });
+
 // exports.messageTrigger = functions.firestore
 // .document("notifications/{notificationId}")
 // .onCreate(async (snapshot, context) => {

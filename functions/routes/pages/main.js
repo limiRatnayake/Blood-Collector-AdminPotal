@@ -75,5 +75,14 @@ router.get("/user-profile", (req, res) => {
       hasCharts: false,
    });
 });
+router.get("/analytics", (req, res) => {
+   res.render("analytics/analytics.ejs", {
+      slug: "analytics",
+      title: "analytics",
+      subTitle: "Analytics",
+      hasTables: true,
+      hasCharts: false,
+   });
+});
 //mounts the router module on a path in the main app.
 module.exports = router;

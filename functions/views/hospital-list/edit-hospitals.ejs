@@ -1,0 +1,93 @@
+<div class="modal" id="editBloodBankModal" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header" style="padding: 35px 50px">
+            <div>
+               <h4>Edit Cluster Centers & Affiliated Blood Banks</h4>
+            </div>
+            <button type="button" class="close" data-dismiss="modal">
+               &times;
+            </button>
+         </div>
+         <div class="modal-body" style="padding: 25px 45px">
+            <form role="form" id="formEditBloodBank">
+               <div class="form-group">
+                  <label for="bloodBankName"
+                     >Name of the Cluster Centers & Affiliated Blood Banks
+                  </label>
+                  <input
+                     type="text"
+                     class="form-control"
+                     id="editTxtBloodBankName"
+                     name="editTxtBloodBankName"
+                     placeholder="eg: IDH-Angoda"
+                  />
+               </div>
+               <div class="form-group">
+                  <label for="bloodBankAddress"
+                     >Address of the Cluster Centers & Affiliated Blood
+                     Banks</label
+                  >
+                  <input
+                     type="text"
+                     class="form-control"
+                     id="editTxtBloodBankAddress"
+                     name="editTxtBloodBankAddress"
+                     placeholder="eg:- IDH, Mandavila Road, Kotikawatta, Sri Lanka"
+                  />
+               </div>
+               <div class="form-group">
+                  <label for="description">Add a description</label>
+                  <input
+                     type="text"
+                     class="form-control"
+                     id="editTxtDescription"
+                     name="editTxtDescription"
+                     placeholder="Description"
+                  />
+               </div>
+               <div class="form-group">
+                  <label for="hospitalLatitude">Latitude</label>
+                  <input
+                     type="text"
+                     class="form-control"
+                     id="editHospitalLatitude"
+                     name="editHospitalLatitude"
+                     placeholder="eg: 6.9225"
+                  />
+               </div>
+               <div class="form-group">
+                  <label for="hospitalLongitude">Longitude</label>
+                  <input
+                     type="text"
+                     class="form-control"
+                     id="editHospitalLongitude"
+                     name="editHospitalLongitude"
+                     placeholder="eg: 79.9182"
+                  />
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-danger btn-default"
+                     data-dismiss="modal"
+                     id="editBtnClear"
+                  >
+                     <span class="glyphicon glyphicon-remove"></span>
+                     Cancel
+                  </button>
+                  <button
+                     type="button"
+                     class="btn btn-success btn-default"
+                     id="editBtnSaveDetails"
+                  >
+                     Save Details
+                  </button>
+                  <!--stop the retrograding by changing the type submit to button-->
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>

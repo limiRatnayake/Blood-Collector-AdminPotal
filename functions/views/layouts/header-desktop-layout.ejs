@@ -1,36 +1,56 @@
 <div class="container-fluid">
-    <div class="header-wrap  float-right">
-        <!--User Profile-->
-        <div class="header-button">
-            <div class="noti-wrap">
-                <div class="account-wrap">
-                    <div class="account-item clearfix js-item-menu">
-                        <!-- <div class="image">
+   <div class="header-wrap float-right">
+      <!--User Profile-->
+      <div class="header-button">
+         <div class="noti-wrap">
+            <div class="account-wrap">
+               <div class="account-item clearfix js-item-menu">
+                  <!-- <div class="image">
                             <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
                         </div> -->
-                        <div class="">
-                            <a href="#" class="js-acc-btn" id="headerUserEmail"></a>
+                  <div class="row" style="column-gap: 10px">
+                     <em
+                        class="zmdi zmdi-account-circle"
+                        style="font-size: 25px"
+                     >
+                     </em>
+
+                     <a
+                        href="#"
+                        class="js-acc-btn text-dark"
+                        id="headerUserEmail"
+                     ></a>
+                  </div>
+                  <div class="account-dropdown js-dropdown">
+                     <div class="info clearfix">
+                        <div class="content">
+                           <h4 class="name" id="accDropdownUserName"></h4>
+                           <span
+                              class="userRole"
+                              id="accDropdownUserRole"
+                           ></span>
                         </div>
-                        <div class="account-dropdown js-dropdown">
-                            <div class="info clearfix">
-                                <div class="content">
-                                    <h4 class="name" id="accDropdownUserName"></h4>
-                                    <span class="userRole" id="accDropdownUserRole"></span>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__body">
-                                <div class="account-dropdown__item">
-                                    <a href="user-profile">
-                                        <i class="zmdi zmdi-account"></i>My Account</a>
-                                </div>
-                            </div>
-                            <div class="account-dropdown__footer">
-                                <button class="au-btn au-btn--block au-btn--blue m-b-20" id="btnLogout" type="button"> <i class=" zmdi zmdi-power "></i> Logout</button>
-                            </div>
+                     </div>
+                     <div class="account-dropdown__body">
+                        <div class="account-dropdown__item">
+                           <a href="user-profile">
+                              <i class="zmdi zmdi-account"></i>My Account</a
+                           >
                         </div>
-                    </div>
-                </div>
+                     </div>
+                     <div class="account-dropdown__footer">
+                        <button
+                           class="au-btn au-btn--block au-btn--blue m-b-20"
+                           id="btnLogout"
+                           type="button"
+                        >
+                           <i class="zmdi zmdi-power"></i> Logout
+                        </button>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </div>

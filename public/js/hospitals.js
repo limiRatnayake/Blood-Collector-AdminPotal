@@ -1,7 +1,7 @@
 $(function () {
    $(document).ready(function () {
       $("#addClusterBankBtn").click(function () {
-         $("#bloodBankModal ").modal({});
+         $("#bloodBankModal").modal({});
       });
    });
 
@@ -10,6 +10,8 @@ $(function () {
       scrollX: true,
       searching: false,
    });
+
+   dataTable.columns(1).visible(false);
 
    $("#formAddBloodBank").validate({
       rules: {
@@ -26,6 +28,22 @@ $(function () {
          hospitalLongitude: " Enter the Longitude value",
       },
    });
+   $("#formEditBloodBank").validate({
+      rules: {
+         editTxtBloodBankName: "required",
+         editTxtBloodBankAddress: "required",
+         editTxtDescription: "required",
+         editHospitalLatitude: "required",
+         editHospitalLongitude: "required",
+      },
+      messages: {
+         editTxtBloodBankName: " Enter Blood Bank Name",
+         editTxtBloodBankAddress: " Enter Blood Bank Address",
+         editTxtDescription: " Enter description",
+         editHospitalLatitude: " Enter Latitude",
+         editHospitalLongitude: " Enter Longitude",
+      },
+   });
 
    $("#formAddBloodBank").ready(function () {
       $(document).on("click", "#btnSaveDetails", () => {
@@ -39,8 +57,10 @@ $(function () {
             var hospitalLatitude = $("#hospitalLatitude").val();
             var hospitalLongitude = $("#hospitalLongitude").val();
 
-            db.collection(COLLECTION_HOSPITALS)
-               .add({
+            var hospitalRef = db.collection(COLLECTION_HOSPITALS).doc();
+            hospitalRef
+               .set({
+                  bloodBankId: hospitalRef.id,
                   bloodBankName: bloodBankName,
                   bloodBankAddress: bloodBankAddress,
                   description: description,
@@ -48,9 +68,8 @@ $(function () {
                   hospitalLongitude: hospitalLongitude,
                })
                .then(function (docRef) {
-                  console.log("Document written with ID: ", docRef.id);
                   Swal.fire(
-                     "Hospital Deatils Added!",
+                     "Hospital Details Added!",
                      "Your file has been uploaded.",
                      "success"
                   );
@@ -58,8 +77,8 @@ $(function () {
                })
                .catch(function (error) {
                   Swal.fire(
-                     "Hospital Deatils Added!",
-                     "Error occured: " + error,
+                     "Hospital Details Added!",
+                     "Error occurred: " + error,
                      "success"
                   );
                   console.error("Error adding document: ", error);
@@ -69,7 +88,7 @@ $(function () {
    });
    //clear once form is submitted
    $("#formAddBloodBank").ready(function () {
-      $(document).on("click", "#btnClear", () => {
+      $(document).on("click", "#btnCancel", () => {
          $("#formAddBloodBank").trigger("reset");
       });
    });
@@ -85,13 +104,119 @@ $(function () {
          dataTable.row
             .add([
                rowCount++,
+               data.bloodBankId,
                data.bloodBankName,
                data.bloodBankAddress,
                data.description,
                data.hospitalLatitude,
                data.hospitalLongitude,
+               '<button type="button" class="btn btn-outline-success btn-sm btnEdit">Edit</button>' +
+                  "   " +
+                  '<button type="button" class="btn btn-outline-danger btn-sm btnDelete">Delete</button>' +
+                  "</div>",
             ])
             .draw();
+      });
+   });
+   //toast a message when profile is updated
+   const Toast = Swal.mixin({
+      toast: true,
+      type: "success",
+      position: "top-right",
+      showConfirmButton: false,
+      timer: 3000,
+   });
+   $("#hospitalViewTable tbody").on("click", ".btnEdit", function () {
+      var data = dataTable.row($(this).parents("tr")).data();
+      var hospitalId = data[1];
+      $("#editBloodBankModal").modal({});
+      //show the previous values
+      db.collection(COLLECTION_HOSPITALS)
+         .where("bloodBankId", "==", hospitalId)
+         .onSnapshot(
+            function (querySnapshot) {
+               querySnapshot.forEach(function (doc) {
+                  let hospitalData = doc.data();
+                  console.log(hospitalData);
+
+                  document.getElementById("editTxtBloodBankName").value =
+                     hospitalData.bloodBankName;
+                  document.getElementById("editTxtBloodBankAddress").value =
+                     hospitalData.bloodBankAddress;
+                  document.getElementById("editTxtDescription").value =
+                     hospitalData.description;
+                  document.getElementById("editHospitalLatitude").value =
+                     hospitalData.hospitalLatitude;
+                  document.getElementById("editHospitalLongitude").value =
+                     hospitalData.hospitalLongitude;
+               });
+            },
+            function (error) {
+               var errorMessage = error.message;
+               window.alert("Error:" + errorMessage);
+            }
+         );
+
+      // update those values
+      $("#formEditBloodBank").ready(function () {
+         $(document).on("click", "#editBtnSaveDetails", () => {
+            var bloodBankName = $("#editTxtBloodBankName").val();
+            var bloodBankAddress = $("#editTxtBloodBankAddress").val();
+            var description = $("#editTxtDescription").val();
+            var bloodBankLat = $("#editHospitalLatitude").val();
+            var bloodBankLng = $("#editHospitalLongitude").val();
+
+            if ($("#formEditBloodBank").valid()) {
+               Swal.fire({
+                  title: "Are you sure?",
+                  text: "You can always change your mind later!",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes",
+                  allowOutsideClick: false,
+               }).then((result) => {
+                  if (result.value) {
+                     hospitalListRef.doc(hospitalId).update({
+                        bloodBankName: bloodBankName,
+                        bloodBankAddress: bloodBankAddress,
+                        description: description,
+                        hospitalLatitude: bloodBankLat,
+                        hospitalLongitude: bloodBankLng,
+                     });
+                     Toast.fire({
+                        icon: "success",
+                        title: "Your changed are updated!",
+                     });
+                  }
+               });
+            }
+         });
+      });
+   });
+
+   $("#hospitalViewTable tbody").on("click", ".btnDelete", function () {
+      var data = dataTable.row($(this).parents("tr")).data();
+      var hospitalId = data[1];
+
+      Swal.fire({
+         title: "Are you sure?",
+         text: "You can always change your mind later!",
+         type: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Yes",
+         allowOutsideClick: false,
+      }).then((result) => {
+         if (result.value) {
+            hospitalListRef.doc(hospitalId).delete();
+            Toast.fire({
+               icon: "success",
+               title: "Your changed are updated!",
+            });
+         }
       });
    });
 });

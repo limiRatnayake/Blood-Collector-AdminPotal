@@ -144,7 +144,7 @@
                                              type="button"
                                              class="btn btn-danger btn-default"
                                              data-dismiss="modal"
-                                             id="btnClear"
+                                             id="btnCancel"
                                           >
                                              <span
                                                 class="glyphicon glyphicon-remove"
@@ -168,6 +168,8 @@
                      </div>
                   </div>
                </div>
+               <%- include('../hospital-list/edit-hospitals');%>
+
                <div class="container section__content--p30">
                   <div class="container-fluid">
                      <div class="row">
@@ -198,11 +200,18 @@
                                     <thead>
                                        <tr>
                                           <td>No</td>
+                                          <td
+                                             id="hospitalId"
+                                             style="display: none"
+                                          >
+                                             HospitalID
+                                          </td>
                                           <td>Hospital Name</td>
                                           <td>Hospital Address</td>
                                           <td>Description</td>
                                           <td>Latitude</td>
                                           <td>Longitude</td>
+                                          <td>Options</td>
                                        </tr>
                                     </thead>
                                     <tbody></tbody>
