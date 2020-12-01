@@ -35,15 +35,13 @@
                     </li>
                 </ul>
             </li>  
-            <li class="has-sub">
-                <a class="js-arrow" href="#">
-                    </i>Analytics</a>
-                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                    <li <%- slug="analytics" ? 'class="active"' : '' -%>>
-                        <a href="analytics">analytics</a>
-                    </li>
-                </ul>
-            </li>
+           
+            <li <%- slug=="analytics" ?  'class="active"' : '' -%>>
+                <a href="analytics">
+                    </i> System Analytics</a>
+            </li> 
+             
+           
 
         </ul>
     </nav>

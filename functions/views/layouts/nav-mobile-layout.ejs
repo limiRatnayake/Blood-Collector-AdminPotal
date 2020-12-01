@@ -43,20 +43,15 @@
                 <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                     <li <%- slug=="add-hospitals" ? 'class="active"' : '' -%>>
                         <a href="add-hospitals">Add/View Hospitals</a>
-                        <!--events are taken from the root.js-->
                     </li>
                 </ul>
             </li> 
-            <li class="has-sub">
-                <a class="js-arrow" href="#">
-                  Analytics</a>
-                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                    <li <%- slug=="analytics" ? 'class="active"' : '' -%>>
-                        <a href="analytics">Analytics</a>
-                        <!--events are taken from the root.js-->
-                    </li>
-                </ul>
-            </li>
+            
+            <li <%- slug=="analytics" ?  'class="active"' : '' -%>>
+                <a href="analytics">
+                    </i> System Analytics</a>
+            </li> 
+         
         </ul>
     </div>
 </nav>
