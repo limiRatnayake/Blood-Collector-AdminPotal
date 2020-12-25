@@ -88,7 +88,7 @@ $(function () {
       var approved = data[16];
       var rejectedReason = data[17];
 
-      if (approved == false && rejectedReason == "None") {
+      if (approved == "No" && rejectedReason == "None") {
          Swal.fire({
             title: "Are you sure?",
             text: "You can always change your mind later!",

@@ -34,6 +34,7 @@ exports.app = functions.https.onRequest(app);
 //push notification
 var newData;
 var tokens;
+const today = new Date();
 
 exports.messageTrigger = functions.firestore
    .document("notifications/{notificationId}")
@@ -96,6 +97,7 @@ exports.messageTrigger = functions.firestore
                notificationId: notificationData.notificationId,
                message: notificationData.message,
                hospitalName: notificationData.hospitalName,
+               sentOn: notificationData.createdAt,
             });
 
             var userNotificationRef = db.collection("users").doc(userId);
@@ -200,6 +202,7 @@ exports.sendThankYouMessage = functions.firestore
                   organizersName: eventDetail.nameOftheOrganizer,
                   eventHeldOn: eventDetail.pickUpStartDate,
                   hospitalName: eventDetail.hospitalName,
+                  sentOn: today,
                });
 
                //add a count when a user get new notification
