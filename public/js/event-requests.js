@@ -18,6 +18,7 @@ $(function () {
    eventsRef.onSnapshot(function (querySnapshot) {
       reqEventViewTable.clear().draw();
       let rowCount = 1;
+      let approvedValue;
       querySnapshot.forEach(function (doc) {
          let data = doc.data();
 
@@ -25,6 +26,14 @@ $(function () {
          if (data.category == "campaign") {
             return false;
          }
+
+         if (data.approved == false) {
+            approvedValue = "No";
+         } else {
+            approvedValue = "Yes";
+         }
+         var date = data.requestClose.toDate();
+         var dateString = moment(date).format("YYYY-MM-DD");
 
          reqEventViewTable.row
             .add([
@@ -34,7 +43,7 @@ $(function () {
                data.bloodGroup,
                data.replacementAvailability,
                data.unitsOfBlood,
-               data.requestClose.toDate(),
+               dateString,
                data.hospitalName,
                data.hospitalAddress,
                data.hospitalLat,
@@ -48,7 +57,7 @@ $(function () {
                   '"><img src="' +
                   data.imageUrl +
                   '" height="42"></a>',
-               data.approved,
+               approvedValue,
                data.rejectReason,
                '<button type="button" class="btn btn-outline-success btn-sm btnApprove" id="btnApprove">Approve</button>' +
                   "   " +

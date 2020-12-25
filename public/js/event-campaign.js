@@ -12,12 +12,19 @@ $(function () {
    eventsRef.onSnapshot(function (querySnapshot) {
       campEventViewTable.clear().draw();
       let rowCount = 1;
+
       querySnapshot.forEach(function (doc) {
          let data = doc.data();
-
+         let approvedValue;
          // If the category is request don't display data)
          if (data.category == "request") {
             return false;
+         }
+
+         if (data.approved == false) {
+            approvedValue = "No";
+         } else {
+            approvedValue = "Yes";
          }
 
          campEventViewTable.row
@@ -38,7 +45,8 @@ $(function () {
                   '"><img src="' +
                   data.imageUrl +
                   '" height="42" width="100%"></a>',
-               data.approved,
+               approvedValue,
+               // data.approved,
                data.rejectReason,
                '<button type="button" class="btn btn-outline-success btn-sm btnApprove">Approve</button>' +
                   "   " +
@@ -49,7 +57,7 @@ $(function () {
       });
    });
 
-   //toast a messae when its approved or rejected
+   //toast a message when its approved or rejected
    const Toast = Swal.mixin({
       toast: true,
       type: "success",
@@ -68,7 +76,7 @@ $(function () {
       console.log(approved);
       console.log(rejectedReason);
 
-      if (approved == false && rejectedReason == "None") {
+      if (approved == "No" && rejectedReason == "None") {
          Swal.fire({
             title: "Are you sure?",
             text: "You can always change your mind later!",
@@ -90,7 +98,7 @@ $(function () {
                });
             }
          });
-      } else if (approved == true) {
+      } else if (approved == "Yes") {
          Swal.fire("Approved!", "It's already been Approved !", "info");
       } else {
          Swal.fire("Rejected!", "It's already been rejected !", "warning");
