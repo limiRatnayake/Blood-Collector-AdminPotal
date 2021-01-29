@@ -2,7 +2,7 @@ $(function () {
    let campEventViewTable = $("#CampEventViewTable").DataTable({
       destroy: true,
       scrollX: true,
-      searching: false,
+      searching: true,
    });
    //hide some columns
    campEventViewTable.columns(1).visible(false);

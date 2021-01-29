@@ -97,7 +97,7 @@ p {
 }
 
 .table-responsive {
-   /* padding-right: 1px; */
+   padding: 15px;
    margin: 10px;
    width: auto;
 }

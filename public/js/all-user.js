@@ -22,7 +22,7 @@ $(function () {
    let dataTable = $("#allUserViewTable").DataTable({
       destroy: true,
       scrollX: true,
-      searching: false,
+      searching: true,
    });
 
    //hide some columns

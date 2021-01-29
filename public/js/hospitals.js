@@ -8,7 +8,7 @@ $(function () {
    let dataTable = $("#hospitalViewTable").DataTable({
       destroy: true,
       scrollX: true,
-      searching: false,
+      searching: true,
    });
 
    dataTable.columns(1).visible(false);

@@ -6,7 +6,7 @@ $(function () {
    let reqEventViewTable = $("#ReqEventViewTable").DataTable({
       destroy: true,
       scrollX: true,
-      searching: false,
+      searching: true,
    });
 
    //hide some columns
@@ -138,7 +138,7 @@ $(function () {
                });
             }
          });
-      } else if (approved == true) {
+      } else if (approved == "Yes") {
          Swal.fire("Approved!", "It's already been Approved !", "info");
       } else {
          Swal.fire("Rejected!", "It's already been rejected !", "warning");
