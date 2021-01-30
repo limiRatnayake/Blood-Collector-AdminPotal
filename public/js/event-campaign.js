@@ -141,6 +141,16 @@ $(function () {
                   rejectReason: value,
                   approved: false,
                });
+               participantsRef
+                  .where("docRef", "==", docRef)
+                  .get()
+                  .then(function (querySnapshot) {
+                     querySnapshot.forEach(function (documentSnapshot) {
+                        documentSnapshot.ref.update({
+                           participatedStatus: "Cancelled",
+                        });
+                     });
+                  });
                Toast.fire({
                   icon: "success",
                   title: "Event is Rejected!",

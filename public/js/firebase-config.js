@@ -3,6 +3,7 @@ const COLLECTION_USERS = "users";
 const COLLECTION_EVENTS = "events";
 const COLLECTION_HOSPITALS = "hospitals";
 const COLLECTION_NOTIFICATIONS = "notifications";
+const COLLECTION_PARTICIPANTS = "participants";
 
 //use to configure my app to use firebase
 var firebaseConfig = {
@@ -22,3 +23,4 @@ let usersRef = db.collection(COLLECTION_USERS);
 let eventsRef = db.collection(COLLECTION_EVENTS);
 let hospitalListRef = db.collection(COLLECTION_HOSPITALS);
 let notificationsRef = db.collection(COLLECTION_NOTIFICATIONS);
+let participantsRef = db.collection(COLLECTION_PARTICIPANTS);
