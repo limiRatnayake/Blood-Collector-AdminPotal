@@ -61,7 +61,7 @@ exports.messageTrigger = functions.firestore
          //(for/of )loops through the values of an iterable object
          for (var tokenData of tokensQuerySnapshot.docs) {
             tokens = [];
-            tokens.push(tokenData.data().token);
+            tokens.push(tokenData.data().tokens);
          }
 
          var payLoad = {
@@ -78,6 +78,7 @@ exports.messageTrigger = functions.firestore
                body: "Your body",
             },
          };
+         console.log(tokens);
          //send data to device
          try {
             const response = firebaseAdmin
@@ -160,7 +161,7 @@ exports.sendThankYouMessage = functions.firestore
             for (var tokenData of tokensQuerySnapshot.docs) {
                console.log(tokenData);
                tokens = [];
-               tokens.push(tokenData.data().token);
+               tokens.push(tokenData.data().tokens);
             }
 
             var payLoad = {
